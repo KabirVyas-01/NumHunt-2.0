@@ -1,4 +1,3 @@
-
 # 🏹 NumHunt 2.0
 
 ### Aim Your Guess. Hit the Target.
