@@ -1,0 +1,328 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_blank" name="shell-type">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+  @layer base {
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+    body {
+      overscroll-behavior: none;
+    }
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-container": "#1d2020",
+        "surface-container-low": "#191c1c",
+        "outline": "#9b8f7d",
+        "primary": "#f0bf5c",
+        "background": "#111414",
+        "inverse-on-surface": "#2e3131",
+        "tertiary-fixed": "#eae2d0",
+        "tertiary-fixed-dim": "#cdc6b5",
+        "surface-container-highest": "#323535",
+        "on-primary": "#412d00",
+        "surface-container-lowest": "#0c0f0f",
+        "on-primary-fixed-variant": "#5d4200",
+        "surface-dim": "#111414",
+        "on-secondary-fixed-variant": "#3c4a43",
+        "primary-fixed": "#ffdea4",
+        "error-container": "#93000a",
+        "secondary-fixed": "#d7e6dd",
+        "secondary-fixed-dim": "#bbcac1",
+        "on-background": "#e1e3e2",
+        "on-error": "#690005",
+        "on-surface-variant": "#d2c5b1",
+        "on-tertiary-fixed-variant": "#4b463a",
+        "surface-container-high": "#282a2a",
+        "secondary": "#bbcac1",
+        "secondary-container": "#3c4a43",
+        "surface-tint": "#f0bf5c",
+        "on-surface": "#e1e3e2",
+        "surface-variant": "#323535",
+        "error": "#ffb4ab",
+        "on-secondary": "#26332d",
+        "surface": "#111414",
+        "inverse-surface": "#e1e3e2",
+        "outline-variant": "#4e4637",
+        "on-tertiary-container": "#3c382c",
+        "on-tertiary": "#343024",
+        "tertiary": "#cdc6b5",
+        "on-secondary-fixed": "#111e18",
+        "tertiary-container": "#a8a191",
+        "on-primary-container": "#4b3500",
+        "surface-bright": "#373a3a",
+        "primary-fixed-dim": "#f0bf5c",
+        "primary-container": "#c89b3c",
+        "on-secondary-container": "#aab9b0",
+        "on-primary-fixed": "#261900",
+        "on-tertiary-fixed": "#1f1b11",
+        "on-error-container": "#ffdad6",
+        "inverse-primary": "#7b5900"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      fontFamily: {
+        "headline-md": ["Space Grotesk", "sans-serif"],
+        "headline-lg": ["Space Grotesk", "sans-serif"],
+        "headline-sm": ["Space Grotesk", "sans-serif"],
+        "display-hero": ["Space Grotesk", "sans-serif"],
+        "body-lg": ["Space Grotesk", "sans-serif"],
+        "body-md": ["Space Grotesk", "sans-serif"],
+        "label-lg": ["JetBrains Mono", "monospace"],
+        "label-md": ["JetBrains Mono", "monospace"],
+        "label-sm": ["JetBrains Mono", "monospace"]
+      }
+    }
+  }
+};
+</script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen flex items-center justify-center selection:bg-primary-container selection:text-on-primary-container">
+<main class="w-full">
+<div class="flex flex-col w-full relative min-h-screen py-8 md:py-12 px-4 sm:px-6 md:px-12 items-center justify-center overflow-x-hidden select-none">
+<!-- Atmospheric Misty Woodland Backing -->
+<div class="fixed inset-0 -z-20 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCq75lu-gtBspA4TXS49Kpw0bwelpKNnn_BcPN0VUt0xDykWMO4RICCIQ-9wPSeN1xS_YanG4y_IFc1lCmDl9GHpSOvd2VdGqHqN8v3bj4pvUjPARJUWOk2uUO78gQffze0qa1bnr6wEVRtD6qEPUJyFlbpfo2dJCirZ1c3oaGqJ3w98BDHZ_isL7Axbrt7vhSSPMCK6GuDOu-7hOP_vD1LDbLYflUC9zlHTABKWnW3')"></div>
+<!-- Shadow Vignette & Ambient Glow -->
+<div class="fixed inset-0 -z-10 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/85 to-surface-container-lowest/90 backdrop-blur-sm"></div>
+<div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed bottom-1/4 left-1/2 -translate-x-1/2 translate-y-1/4 w-[36rem] h-64 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Tactical HUD Safe Area Shell -->
+<div class="w-full max-w-4xl flex flex-col items-center gap-5 z-10">
+<!-- Top Match Telemetry Overline -->
+<div class="w-full flex flex-wrap items-center justify-between gap-3 text-on-surface-variant px-2">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center justify-center w-7 h-7 rounded bg-surface-container border border-outline-variant/40 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</span>
+<span class="font-label-md text-xs md:text-sm tracking-widest text-outline uppercase font-semibold">NUMHUNT 2.0 // TOURNAMENT HANDOVER</span>
+</div>
+<div class="flex items-center gap-4 text-outline font-label-sm text-xs tracking-wider">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            PASS-AND-PLAY HANDOVER
+          </span>
+<span class="text-surface-variant">•</span>
+<span class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-sm">lock</span>
+            SECRET TARGET SEALED
+          </span>
+</div>
+</div>
+<!-- Main Card Container: Frosted Charcoal with Antique Gold Border -->
+<div class="w-full bg-surface-container-low/95 backdrop-blur-xl rounded-2xl border border-outline-variant/40 shadow-2xl overflow-hidden flex flex-col relative">
+<!-- Top Decorative Brass Bar -->
+<div class="h-1.5 w-full bg-gradient-to-r from-transparent via-primary-container to-transparent"></div>
+<!-- Card Upper: Previous Turn Sealed Ledger (Privacy-First Transition) -->
+<div class="px-6 py-4 md:px-8 md:py-5 bg-surface-container-lowest/80 border-b border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-lg bg-error-container/30 border border-error/20 flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-[11px] uppercase tracking-wider text-primary-fixed-dim font-semibold">PREVIOUS TURN SEALED</span>
+<span class="text-surface-container-highest">•</span>
+<span class="font-label-sm text-[11px] text-secondary">ROUND 1 COMPLETE</span>
+</div>
+<p class="font-headline-sm text-sm sm:text-base font-semibold text-on-surface mt-0.5">
+                Rowan the Bold • Round 1 Completed • <span class="text-primary font-bold">6 Attempts Used</span>
+</p>
+</div>
+</div>
+<!-- Privacy assurance pill -->
+<div class="inline-flex items-center gap-2 self-start sm:self-center px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant/30 text-on-surface-variant font-label-sm text-[11px] uppercase tracking-wider shrink-0">
+<span class="material-symbols-outlined text-primary text-base">lock</span>
+<span>Target Hidden &amp; Secured</span>
+</div>
+</div>
+<!-- Card Core: Turn Handover Command Arena -->
+<div class="px-6 py-8 md:px-12 md:py-10 flex flex-col items-center text-center relative overflow-hidden">
+<!-- Screen Blind Protective Banner -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-highest/80 border border-outline-variant/40 text-secondary-fixed text-xs font-label-md tracking-wider uppercase mb-5">
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+<span>SCREEN BLIND ACTIVE — CONCEAL FROM PREVIOUS ARCHER</span>
+</div>
+<!-- Large Handover Directive with proper spacing and leading -->
+<div class="flex flex-col items-center gap-1 mb-8 max-w-2xl">
+<span class="font-label-md text-xs sm:text-sm uppercase tracking-[0.25em] text-primary font-semibold">
+              PASS THE DEVICE TO
+            </span>
+<h1 class="font-display-hero text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-on-surface leading-tight mt-1">
+              PLAYER 2: GARRICK OF THE WOOD
+            </h1>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant mt-2 max-w-lg leading-relaxed">
+              Hand the device to the next archer before revealing the new target.
+            </p>
+</div>
+<!-- Player 2 Identity Hero Showcase (Emerald / Forest Theme) -->
+<div class="w-full max-w-xl bg-surface-container border-2 border-emerald-500/40 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-5 sm:gap-6 shadow-xl relative overflow-hidden text-left">
+<!-- Background Radiant Glow -->
+<div class="absolute -right-10 -bottom-10 w-44 h-44 bg-emerald-600/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Character Portrait Frame with green trim -->
+<div class="relative shrink-0">
+<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden ring-2 ring-emerald-500/60 shadow-lg bg-surface-container-lowest">
+<img alt="Stoic medieval archer hooded in dark forest green mantle" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXL0iNp9Wkz4EUWeMkjscxTQijQjVtQJ79v6913K6xY9Nk5eo0FUnJ-n89tdLg8bJ0TLZQliQ6BPoiYTBg6AVes5ng_aPPFxkoQetAsTOdkD6IgYM1LVqIExEKjzuckU_FXwzmekVwozM_Wef0uOq5RoZ7mI8SOXrYlQUvrf3WujttaCQZ2Vn3QlMX-XP0gtYbwweZZLgwTjuFQXSKA8FZx-hNRchlVDqb6uueCwv9">
+</div>
+<span class="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-emerald-600 border-2 border-surface-container flex items-center justify-center text-on-secondary shadow">
+<span class="material-symbols-outlined text-xs font-bold">check</span>
+</span>
+</div>
+<!-- Player Details -->
+<div class="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left gap-1.5">
+<div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-secondary-container text-emerald-300 border border-emerald-500/30 text-xs font-label-md font-semibold tracking-wider uppercase">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+<span>GREEN ARCHER IDENTITY</span>
+</div>
+<h2 class="font-headline-md text-xl sm:text-2xl font-bold text-on-surface tracking-normal leading-snug">
+                GARRICK OF THE WOOD
+              </h2>
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1 font-label-sm text-xs">
+<span class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant/30 text-on-surface">RANGE: 1 — 100</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant/30 text-on-surface">10 ATTEMPTS</span>
+<span class="px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-semibold">TARGET SEALED</span>
+</div>
+</div>
+</div>
+<!-- Range & Mechanics Briefing Note -->
+<div class="flex items-center justify-center gap-3 max-w-lg mt-7 text-on-surface-variant font-body-md text-sm md:text-base leading-relaxed">
+<span class="material-symbols-outlined text-primary text-xl shrink-0">lock_reset</span>
+<p>A fresh secret number between 1 and 100 has been sealed. You have 10 attempts to find the mark.</p>
+</div>
+<!-- Primary Action CTA Button -->
+<div class="mt-8 w-full max-w-md flex flex-col items-center gap-2.5">
+<button class="w-full group relative overflow-hidden py-4 px-6 rounded-xl bg-primary text-on-primary font-headline-sm text-sm sm:text-base uppercase font-bold tracking-wider transition-all duration-200 hover:brightness-110 active:scale-[0.99] shadow-xl hover:shadow-primary/20 flex items-center justify-center gap-2.5" id="commenceBtn">
+<span class="material-symbols-outlined text-xl transition-transform group-hover:scale-110">sports_score</span>
+<span>I AM READY • COMMENCE ROUND [ENTER]</span>
+<span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<div class="flex items-center gap-2 text-outline font-label-sm text-[11px] uppercase tracking-widest pt-1">
+<span class="px-2 py-0.5 bg-surface-container rounded border border-outline-variant/30 text-on-surface font-semibold">ENTER</span>
+<span>OR</span>
+<span class="px-2 py-0.5 bg-surface-container rounded border border-outline-variant/30 text-on-surface font-semibold">SPACE</span>
+<span>TO COMMENCE</span>
+</div>
+</div>
+</div>
+<!-- Card Lower: Tournament Roster Live Standings Strip -->
+<div class="bg-surface-container-lowest/90 border-t border-outline-variant/30 p-5 md:p-6">
+<div class="flex items-center justify-between mb-3 text-outline font-label-sm text-xs tracking-wider">
+<span class="uppercase flex items-center gap-2 font-semibold">
+<span class="material-symbols-outlined text-sm">scoreboard</span>
+              TOURNAMENT STANDINGS // SYLVAN TOURNAMENT FLIGHT 1
+            </span>
+<span>3 ARCHERS REGISTERED</span>
+</div>
+<!-- 3-Column Roster Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<!-- P1 Rowan (Completed) -->
+<div class="bg-surface-container/70 border border-outline-variant/30 p-3.5 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-error-container/40 border border-error/30 text-error flex items-center justify-center font-label-md text-xs font-bold">
+                  P1
+                </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm font-semibold text-on-surface">Rowan</span>
+<span class="font-label-sm text-[10px] text-outline uppercase tracking-wider">Scarlet Order</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-xs text-primary font-bold block">6 Attempts</span>
+<span class="font-label-sm text-[10px] text-secondary uppercase font-semibold">Completed</span>
+</div>
+</div>
+<!-- P2 Garrick (Current Active) -->
+<div class="bg-surface-container-high border-2 border-emerald-500/50 p-3.5 rounded-lg flex items-center justify-between relative shadow-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary-container border border-emerald-500/40 text-emerald-300 flex items-center justify-center font-label-md text-xs font-bold">
+                  P2
+                </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm font-bold text-on-surface">Garrick</span>
+<span class="font-label-sm text-[10px] text-emerald-400 uppercase font-semibold tracking-wider">Green Archer</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-xs text-on-surface font-bold block">0 / 10 Attempts</span>
+<span class="font-label-sm text-[10px] text-primary uppercase font-bold tracking-wider">Turn Active</span>
+</div>
+</div>
+<!-- P3 Alys (Waiting) -->
+<div class="bg-surface-container/40 border border-outline-variant/20 p-3.5 rounded-lg flex items-center justify-between opacity-70">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-highest text-outline flex items-center justify-center font-label-md text-xs font-bold">
+                  P3
+                </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-sm font-semibold text-on-surface">Alys</span>
+<span class="font-label-sm text-[10px] text-outline uppercase tracking-wider">Cobalt Ranger</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-md text-xs text-outline font-bold block">—</span>
+<span class="font-label-sm text-[10px] text-outline uppercase">Waiting</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Diegetic Peripheral Footer & Hotkey Controls -->
+<div class="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-outline font-label-md text-xs pt-1 px-2">
+<div class="flex items-center gap-2">
+<span>© MMXXIV NUMHUNT STUDIOS.</span>
+<span>•</span>
+<span class="text-on-surface-variant font-medium">CREATED BY KABIR VYAS</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:text-primary transition-colors flex items-center gap-1.5 focus:outline-none">
+<span class="px-1.5 py-0.5 bg-surface-container rounded border border-outline-variant/30 text-on-surface text-[10px] font-label-sm">ESC</span>
+<span>TOURNAMENT RULES</span>
+</button>
+<button class="hover:text-primary transition-colors flex items-center gap-1.5 focus:outline-none">
+<span class="px-1.5 py-0.5 bg-surface-container rounded border border-outline-variant/30 text-on-surface text-[10px] font-label-sm">M</span>
+<span>MUTE AMBIENCE</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+  // Keyboard shortcut handler for same-device pass-and-play
+  document.addEventListener('keydown', function(event) {
+    if (event.code === 'Enter' || event.code === 'Space') {
+      event.preventDefault();
+      const btn = document.getElementById('commenceBtn');
+      if (btn) {
+        btn.classList.add('scale-95', 'opacity-80');
+        setTimeout(() => {
+          btn.classList.remove('scale-95', 'opacity-80');
+          btn.innerHTML = '<span class="material-symbols-outlined text-xl animate-spin">refresh</span><span>INITIALIZING FIELD...</span>';
+        }, 150);
+      }
+    }
+  });
+</script>
+
+
+</body></html>

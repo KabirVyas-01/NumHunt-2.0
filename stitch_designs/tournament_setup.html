@@ -1,0 +1,415 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container": "#1d2020", "surface-container-low": "#191c1c", "outline": "#9b8f7d", "primary": "#f0bf5c", "background": "#111414", "inverse-on-surface": "#2e3131", "tertiary-fixed": "#eae2d0", "tertiary-fixed-dim": "#cdc6b5", "surface-container-highest": "#323535", "on-primary": "#412d00", "surface-container-lowest": "#0c0f0f", "on-primary-fixed-variant": "#5d4200", "surface-dim": "#111414", "on-secondary-fixed-variant": "#3c4a43", "primary-fixed": "#ffdea4", "error-container": "#93000a", "secondary-fixed": "#d7e6dd", "secondary-fixed-dim": "#bbcac1", "on-background": "#e1e3e2", "on-error": "#690005", "on-surface-variant": "#d2c5b1", "on-tertiary-fixed-variant": "#4b463a", "surface-container-high": "#282a2a", "secondary": "#bbcac1", "secondary-container": "#3c4a43", "surface-tint": "#f0bf5c", "on-surface": "#e1e3e2", "surface-variant": "#323535", "error": "#ffb4ab", "on-secondary": "#26332d", "surface": "#111414", "inverse-surface": "#e1e3e2", "outline-variant": "#4e4637", "on-tertiary-container": "#3c382c", "on-tertiary": "#343024", "tertiary": "#cdc6b5", "on-secondary-fixed": "#111e18", "tertiary-container": "#a8a191", "on-primary-container": "#4b3500", "surface-bright": "#373a3a", "primary-fixed-dim": "#f0bf5c", "primary-container": "#c89b3c", "on-secondary-container": "#aab9b0", "on-primary-fixed": "#261900", "on-tertiary-fixed": "#1f1b11", "on-error-container": "#ffdad6", "inverse-primary": "#7b5900" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "space-xl": "2.5rem", "margin": "3rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-lg": "1.5rem" }, "fontFamily": { "headline-md": [ "Space Grotesk", "sans-serif" ], "label-md": [ "JetBrains Mono", "monospace" ], "headline-lg": [ "Space Grotesk", "sans-serif" ], "label-sm": [ "JetBrains Mono", "monospace" ], "headline-lg-mobile": [ "Space Grotesk", "sans-serif" ], "display-hero-mobile": [ "Space Grotesk", "sans-serif" ], "display-hero": [ "Space Grotesk", "sans-serif" ], "label-lg": [ "JetBrains Mono", "monospace" ], "body-lg": [ "Space Grotesk", "sans-serif" ], "body-md": [ "Space Grotesk", "sans-serif" ], "headline-sm": [ "Space Grotesk", "sans-serif" ] }, "fontSize": { "headline-md": [ "22px", { "lineHeight": "28px", "letterSpacing": "0.03em", "fontWeight": "600" } ], "label-md": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "label-sm": [ "9px", { "lineHeight": "12px", "letterSpacing": "0.15em", "fontWeight": "600" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "32px", "letterSpacing": "0.04em", "fontWeight": "700" } ], "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "0.06em", "fontWeight": "700" } ], "display-hero": [ "56px", { "lineHeight": "64px", "letterSpacing": "0.08em", "fontWeight": "700" } ], "label-lg": [ "13px", { "lineHeight": "18px", "letterSpacing": "0.1em", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0.02em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 h-16 z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-b border-surface-container-high/60 shadow-md"><div class="w-full h-16 px-margin-mobile lg:px-margin flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[22px]">military_tech</span><span class="font-headline-md text-headline-md tracking-wider text-primary uppercase flex items-center gap-1.5">NumHunt <span class="text-primary font-label-md text-label-md px-1.5 py-0.5 rounded bg-surface-container-high border border-primary/20">2.0</span></span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low border border-surface-container-high px-space-sm py-1 rounded text-secondary font-label-sm text-label-sm tracking-wider uppercase"><span class="material-symbols-outlined text-[16px] text-primary">groups</span> PASS &amp; PLAY TOURNAMENT</div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 flex-1 bg-surface"><div class="w-full px-margin-mobile lg:px-margin py-space-lg"><div class="flex flex-col w-full relative">
+<!-- Background Canvas Layer -->
+<div class="absolute -top-16 left-0 right-0 h-[560px] pointer-events-none overflow-hidden opacity-25 select-none">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2DJNuj6L1HXKEXu25vWmFMhLaKqMamJeCgxBkCNWSDPjOnDK20d6wkjGkkM6EL8ukz0AOnRvUJMN-ANSOiLP_4bhU34TA6XAUaTdI3FjXKRjBI8BKElp77jX1mNZUA3Jgn6MZpIyO89-NJSmFxltIa3uiQq58PvInZcKZbeu8W-AQlyPMIRB6w9qgPxcyPdrG_vLakCPu3ssOWUqNOSQ99Kw-Xo75Y8BkHD99v_t0')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/85 to-surface"></div>
+</div>
+<!-- Primary Container -->
+<div class="relative z-10 flex flex-col gap-space-xl max-w-7xl mx-auto w-full pb-space-xl">
+<!-- Top Meta Breadcrumb -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">
+<span class="hover:text-primary transition-colors cursor-pointer flex items-center gap-1.5" onclick="window.history.back()">
+<span class="material-symbols-outlined text-[14px]">shield</span> Main Menu
+</span>
+<span class="text-outline-variant font-bold">/</span>
+<span class="text-primary-fixed flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px] text-primary">groups</span> Tournament Setup
+</span>
+</div>
+<div class="flex items-center gap-2 px-space-md py-1 bg-surface-container-low border border-surface-container-high rounded text-secondary font-label-sm text-label-sm tracking-wider uppercase">
+<span class="material-symbols-outlined text-[15px] text-primary">sports_martial_arts</span> LOCAL PASS &amp; PLAY
+</div>
+</div>
+<!-- Screen Headline Block -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md bg-surface-container-low/90 border border-surface-container-high/60 backdrop-blur-md p-space-lg rounded shadow-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">sports_martial_arts</span>
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary-fixed font-semibold">Tournament Setup</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg uppercase tracking-wide text-on-surface">Local Tournament Setup</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">Same-device Pass &amp; Play • 2 to 4 Archers • Secret Number 1–100 • 10 Attempts Each • Lowest Guesses Wins.</p>
+</div>
+<!-- Session Telemetry Ledger -->
+<div class="flex items-center gap-space-lg bg-surface-container-lowest/80 border border-surface-container-high px-space-md py-space-sm rounded self-start md:self-auto shadow-inner">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-outline">Target Range</span>
+<span class="font-label-lg text-label-lg font-bold text-primary font-mono">1 – 100</span>
+</div>
+<div class="w-px h-6 bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-outline">Max Attempts</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface font-mono">10 Turns</span>
+</div>
+</div>
+</div>
+<!-- Main Setup Grid: Controls + Roster + Preview Strip -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left 8 Columns: Archer Roster & Segmented Count Controls -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Segmented Player Count Selector -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md bg-surface-container-low border border-surface-container-high p-space-md rounded shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">Archers in Competition</span>
+<span class="font-label-sm text-label-sm text-outline">Select 2, 3, or 4 players for this local match</span>
+</div>
+<div class="inline-flex p-1 bg-surface-container-lowest border border-surface-container-highest rounded" id="roster-selector">
+<button class="count-btn px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider transition-all duration-200 text-on-surface-variant hover:text-on-surface" id="btn-count-2" onclick="selectArchers(2)" type="button">
+2 Archers
+</button>
+<button class="count-btn px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider transition-all duration-200 bg-surface-container-high text-primary font-semibold shadow-sm border border-primary/30" id="btn-count-3" onclick="selectArchers(3)" type="button">
+◆ 3 Archers (Active)
+</button>
+<button class="count-btn px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider transition-all duration-200 text-on-surface-variant hover:text-on-surface" id="btn-count-4" onclick="selectArchers(4)" type="button">
+4 Archers
+</button>
+</div>
+</div>
+<!-- 4-Player Roster Slate -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md" id="roster-grid">
+<!-- Archer 1: Red -->
+<div class="player-card flex flex-col justify-between bg-surface-container-low border border-surface-container-high rounded p-space-md shadow-md transition-all relative overflow-hidden" id="card-p1">
+<div class="absolute top-0 left-0 right-0 h-1 bg-[#e03131]"></div>
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-[#e03131]/20 border border-[#e03131]/40 flex items-center justify-center text-[#e03131] font-label-md font-bold">1</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-[#e03131] font-bold">Player 1</span>
+<span class="font-label-sm text-label-sm text-outline">Turn 1 • Base Model</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm uppercase bg-[#e03131]/15 border border-[#e03131]/40 text-[#e03131] font-bold">Red Accent</span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline tracking-wider" for="p1-name">Archer Name</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest border border-surface-container-highest px-space-sm py-2 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors shadow-inner" id="p1-name" type="text" value="Rowan">
+<span class="material-symbols-outlined absolute right-2 text-outline-variant text-[18px] pointer-events-none">edit</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-surface-container-highest/60 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#e03131] inline-block"></span> Red hood trim &amp; fletching</span>
+<span class="text-primary font-semibold font-mono">Turn 1</span>
+</div>
+</div>
+<!-- Archer 2: Green -->
+<div class="player-card flex flex-col justify-between bg-surface-container-low border border-surface-container-high rounded p-space-md shadow-md transition-all relative overflow-hidden" id="card-p2">
+<div class="absolute top-0 left-0 right-0 h-1 bg-[#2f9e44]"></div>
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-[#2f9e44]/20 border border-[#2f9e44]/40 flex items-center justify-center text-[#2f9e44] font-label-md font-bold">2</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-[#2f9e44] font-bold">Player 2</span>
+<span class="font-label-sm text-label-sm text-outline">Turn 2 • Base Model</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm uppercase bg-[#2f9e44]/15 border border-[#2f9e44]/40 text-[#2f9e44] font-bold">Green Accent</span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline tracking-wider" for="p2-name">Archer Name</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest border border-surface-container-highest px-space-sm py-2 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors shadow-inner" id="p2-name" type="text" value="Garrick">
+<span class="material-symbols-outlined absolute right-2 text-outline-variant text-[18px] pointer-events-none">edit</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-surface-container-highest/60 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#2f9e44] inline-block"></span> Green hood trim &amp; fletching</span>
+<span class="text-primary font-semibold font-mono">Turn 2</span>
+</div>
+</div>
+<!-- Archer 3: Blue -->
+<div class="player-card flex flex-col justify-between bg-surface-container-low border border-surface-container-high rounded p-space-md shadow-md transition-all relative overflow-hidden" id="card-p3">
+<div class="absolute top-0 left-0 right-0 h-1 bg-[#1971c2]"></div>
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-[#1971c2]/20 border border-[#1971c2]/40 flex items-center justify-center text-[#1971c2] font-label-md font-bold">3</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-[#1971c2] font-bold">Player 3</span>
+<span class="font-label-sm text-label-sm text-outline">Turn 3 • Base Model</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm uppercase bg-[#1971c2]/15 border border-[#1971c2]/40 text-[#1971c2] font-bold">Blue Accent</span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline tracking-wider" for="p3-name">Archer Name</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest border border-surface-container-highest px-space-sm py-2 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors shadow-inner" id="p3-name" type="text" value="Alys">
+<span class="material-symbols-outlined absolute right-2 text-outline-variant text-[18px] pointer-events-none">edit</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-surface-container-highest/60 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#1971c2] inline-block"></span> Blue hood trim &amp; fletching</span>
+<span class="text-primary font-semibold font-mono" id="label-turn-p3">Turn 3</span>
+</div>
+</div>
+<!-- Archer 4: Yellow (Inactive by default when 3 are active) -->
+<div class="player-card flex flex-col justify-between bg-surface-container-low border border-surface-container-high rounded p-space-md shadow-md transition-all relative overflow-hidden opacity-50" id="card-p4">
+<div class="absolute top-0 left-0 right-0 h-1 bg-[#f59f00]"></div>
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-[#f59f00]/20 border border-[#f59f00]/40 flex items-center justify-center text-[#f59f00] font-label-md font-bold">4</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-[#f59f00] font-bold">Player 4</span>
+<span class="font-label-sm text-label-sm text-outline" id="desc-p4">Inactive</span>
+</div>
+</div>
+<button class="px-2 py-0.5 rounded font-label-sm text-label-sm uppercase bg-surface-container-high border border-surface-container-highest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" id="p4-toggle-badge" onclick="togglePlayerFour()" type="button">Inactive (Click to Enlist)</button>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline tracking-wider" for="p4-name">Archer Name</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest border border-surface-container-highest px-space-sm py-2 rounded font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors shadow-inner" id="p4-name" type="text" value="Kaelen">
+<span class="material-symbols-outlined absolute right-2 text-outline-variant text-[18px] pointer-events-none">edit</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-surface-container-highest/60 text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#f59f00] inline-block"></span> Yellow hood trim &amp; fletching</span>
+<span class="text-outline font-semibold font-mono" id="label-turn-p4">—</span>
+</div>
+</div>
+</div>
+<!-- Shared Visual Base Model Roster Strip -->
+<div class="bg-surface-container-low border border-surface-container-high rounded p-space-md shadow-md flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">view_in_ar</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">Shared Base 3D Model Variants</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono">THREE.JS ARCHER RIG</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">All four players utilize the identical base 3D character model with identical body proportions, facial sculpt, clothing cut, tunic, vambraces, and archery equipment. Distinctions are purely visual color accents in real-time materials (hood trim, tunic lining, arrow fletching: Red, Green, Blue, Yellow).</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+<!-- P1 Red Variant -->
+<div class="bg-surface-container-lowest border border-surface-container-high p-space-sm rounded flex flex-col items-center gap-space-xs shadow-inner" id="preview-p1">
+<div class="w-full h-24 rounded overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJgnWLayvWSA95Ftyl07AevO_mApzd5h19rRhCrMaW3bzKxJKWNtCtr3_s7InwJR8lu90_C5I6rgAf2KxvddhgtDdvencH5511HBpBT2Q99Xp2PsSygKbpoxYQrvozXIPj-NUa5K_2hNBYidinvkFjuWiLXi6kUMumJ9HavIfxNpsuJR5R0GSxLToaNuQ_7_5jxwFVGdAV0mtoE3uIuu3jXil5w6KElzC47weBODzp')"></div>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-[#e03131] text-[9px] font-label-sm font-bold text-white uppercase shadow-sm">P1 Red</div>
+</div>
+<div class="flex items-center gap-1.5 w-full justify-center">
+<span class="w-2 h-2 rounded-full bg-[#e03131]"></span>
+<span class="font-label-sm text-label-sm truncate text-on-surface font-semibold" id="label-name-p1">Rowan</span>
+</div>
+</div>
+<!-- P2 Green Variant -->
+<div class="bg-surface-container-lowest border border-surface-container-high p-space-sm rounded flex flex-col items-center gap-space-xs shadow-inner" id="preview-p2">
+<div class="w-full h-24 rounded overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBArzuxFEKTiBzOIWxDFMY0YysTeGCAkWXhibYNKSHwgtCoQ59Yy7LZKOcik9mtkLFfitD22MvmSRYxpDisyMewHExA_QBWa40QjcXazST7cjC60oId65qcj5ys9ZZgP4udZpvcNelUdVYlKqPOjyvHhpsryxgGFxUdE8KVCVYV880p7yDi9iJafcNSNFd0YzQ6qmjUtZkht1x0oww3sbjMvbtJ_j9RjXiHwKBNkngW')"></div>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-[#2f9e44] text-[9px] font-label-sm font-bold text-white uppercase shadow-sm">P2 Green</div>
+</div>
+<div class="flex items-center gap-1.5 w-full justify-center">
+<span class="w-2 h-2 rounded-full bg-[#2f9e44]"></span>
+<span class="font-label-sm text-label-sm truncate text-on-surface font-semibold" id="label-name-p2">Garrick</span>
+</div>
+</div>
+<!-- P3 Blue Variant -->
+<div class="bg-surface-container-lowest border border-surface-container-high p-space-sm rounded flex flex-col items-center gap-space-xs shadow-inner transition-opacity" id="preview-p3">
+<div class="w-full h-24 rounded overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBzMXPPy48rfmwigcsl0dx25FsOQgG6laFY1M3lFU1rpXakP4YzFgux_-bcD4UOnOXrGPmEnfzzk6JXM7F-SVBLPXzR8dUCiHjGzTnz4gyljh056_J2EEjfEPiqAQU1XxgySxRt6bnPTlE37__zLAANL0TMm7tK2HKTOkWGv5zsBT5_iWuN_mGBAfKGUdDGPtd22Cr5RJxqm74DTXiz-pVQyIDO3ZHuKYxTT6Qyy32')"></div>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-[#1971c2] text-[9px] font-label-sm font-bold text-white uppercase shadow-sm">P3 Blue</div>
+</div>
+<div class="flex items-center gap-1.5 w-full justify-center">
+<span class="w-2 h-2 rounded-full bg-[#1971c2]"></span>
+<span class="font-label-sm text-label-sm truncate text-on-surface font-semibold" id="label-name-p3">Alys</span>
+</div>
+</div>
+<!-- P4 Yellow Variant -->
+<div class="bg-surface-container-lowest border border-surface-container-high p-space-sm rounded flex flex-col items-center gap-space-xs shadow-inner opacity-40 transition-opacity" id="preview-p4">
+<div class="w-full h-24 rounded overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCT3fnhs1LKUaHp_8_UIlb10nyxcxjvqRtibTHnh94C013eY8M6X5k-YR5OasvRgIY56Ly936Gg5hNIfUw1sdVogikFy12wP6711CxW4FJfSWNzHJUdOxYkC3iW1f6EKYYncsLlWS6bHtOn6z_RDQ0bStC4lsdYnCqUSKutDnynejWm-AFBaLdeQd6ccz6WTgpqqq6fhitJTfpFsxsyqZmDW17P-BdvkNPLxY3c1tFh')"></div>
+<div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-[#f59f00] text-[9px] font-label-sm font-bold text-black uppercase shadow-sm">P4 Yellow</div>
+</div>
+<div class="flex items-center gap-1.5 w-full justify-center">
+<span class="w-2 h-2 rounded-full bg-[#f59f00]"></span>
+<span class="font-label-sm text-label-sm truncate text-on-surface font-semibold" id="label-name-p4">Kaelen</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right 4 Columns: Tournament Codex & Execution Module -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Tournament Rules Codex Card -->
+<div class="bg-surface-container-low border border-surface-container-high rounded p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container-highest/60">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_stories</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface">Tournament Codex</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-primary font-mono tracking-widest">RULES</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex items-start gap-space-sm bg-surface-container-lowest border border-surface-container-high p-space-sm rounded shadow-inner">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]">sync_alt</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md font-semibold text-primary uppercase">1. Sequential Turns</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Each archer completes their full round before passing the device to the next player.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm bg-surface-container-lowest border border-surface-container-high p-space-sm rounded shadow-inner">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]">filter_vintage</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md font-semibold text-primary uppercase">2. Secret Number (1–100)</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Each player is assigned a secret integer between 1 and 100 with higher / lower feedback.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm bg-surface-container-lowest border border-surface-container-high p-space-sm rounded shadow-inner">
+<div class="w-7 h-7 rounded bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]">military_tech</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md font-semibold text-primary uppercase">3. Up to 10 Attempts</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Archer with the lowest attempts wins. Identical lowest scores share joint victory.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Action Cluster -->
+<div class="flex flex-col gap-space-sm">
+<!-- Confirm & Start CTA Button -->
+<button class="w-full relative group overflow-hidden bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider py-4 px-space-lg rounded shadow-xl hover:bg-primary-fixed transition-all duration-150 flex items-center justify-center gap-space-sm active:translate-y-0.5" id="btn-start" onclick="beginTournament()" type="button">
+<span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+<span class="font-bold">◆</span>
+<span class="font-bold tracking-widest">START TOURNAMENT</span>
+<span class="font-label-sm text-label-sm bg-on-primary/20 px-2 py-0.5 rounded text-on-primary font-bold ml-1 font-mono">[ENTER]</span>
+<span class="font-bold">◆</span>
+</button>
+<!-- Return Ghost / Secondary Action -->
+<button class="w-full bg-surface-container-low hover:bg-surface-container border border-surface-container-high text-on-surface font-label-md text-label-md uppercase tracking-wider py-3 px-space-md rounded transition-colors flex items-center justify-center gap-space-xs shadow-sm" onclick="window.history.back()" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_back</span>
+<span>BACK TO MAIN MENU</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded text-primary ml-1 font-mono">[ESC]</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Tournament Meta Bar & Keyboard Navigation Index -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md text-outline font-label-sm text-label-sm bg-surface-container-lowest/70 border border-surface-container-high/60 px-space-md py-space-sm rounded">
+<div class="flex items-center gap-space-md flex-wrap">
+<span class="text-primary tracking-widest font-semibold uppercase">MMXXIV NUMHUNT STUDIOS. • CREATED BY KABIR VYAS</span>
+<span class="opacity-30">|</span>
+<span class="text-secondary font-mono">REACT + THREE.JS ARCHITECTURE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1 font-mono">
+<kbd class="px-1.5 py-0.5 bg-surface-container text-primary rounded">[TAB]</kbd> Next Field
+</span>
+<span class="flex items-center gap-1 font-mono">
+<kbd class="px-1.5 py-0.5 bg-surface-container text-primary rounded">[ENTER]</kbd> Launch
+</span>
+<span class="flex items-center gap-1 font-mono">
+<kbd class="px-1.5 py-0.5 bg-surface-container text-primary rounded">[ESC]</kbd> Retreat
+</span>
+</div>
+</div>
+</div>
+<!-- Tournament Configuration Script -->
+<script>
+    let activeArchers = 3;
+
+    function selectArchers(count) {
+      activeArchers = count;
+      updateRosterDisplay();
+    }
+
+    function togglePlayerFour() {
+      if (activeArchers === 4) {
+        selectArchers(3);
+      } else {
+        selectArchers(4);
+      }
+    }
+
+    function updateRosterDisplay() {
+      // Update count button states
+      [2, 3, 4].forEach(n => {
+        const btn = document.getElementById(`btn-count-${n}`);
+        if (n === activeArchers) {
+          btn.className = "count-btn px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider transition-all duration-200 bg-surface-container-high text-primary font-semibold shadow-sm border border-primary/30";
+          btn.innerText = `◆ ${n} ARCHERS (ACTIVE)`;
+        } else {
+          btn.className = "count-btn px-space-md py-1.5 rounded font-label-md text-label-md uppercase tracking-wider transition-all duration-200 text-on-surface-variant hover:text-on-surface";
+          btn.innerText = `${n} ARCHERS`;
+        }
+      });
+
+      // Player 3 visibility
+      const card3 = document.getElementById('card-p3');
+      const preview3 = document.getElementById('preview-p3');
+      const labelTurn3 = document.getElementById('label-turn-p3');
+      if (activeArchers >= 3) {
+        card3.classList.remove('opacity-40');
+        preview3.classList.remove('opacity-40');
+        if (labelTurn3) labelTurn3.innerText = "Turn 3";
+      } else {
+        card3.classList.add('opacity-40');
+        preview3.classList.add('opacity-40');
+        if (labelTurn3) labelTurn3.innerText = "Inactive";
+      }
+
+      // Player 4 visibility & toggle label
+      const card4 = document.getElementById('card-p4');
+      const badge4 = document.getElementById('p4-toggle-badge');
+      const preview4 = document.getElementById('preview-p4');
+      const desc4 = document.getElementById('desc-p4');
+      const labelTurn4 = document.getElementById('label-turn-p4');
+
+      if (activeArchers === 4) {
+        card4.classList.remove('opacity-50');
+        preview4.classList.remove('opacity-40');
+        badge4.className = "px-2 py-0.5 rounded font-label-sm text-label-sm uppercase bg-[#f59f00]/20 border border-[#f59f00]/50 text-[#f59f00] font-bold";
+        badge4.innerText = "Yellow Accent (Turn 4)";
+        desc4.innerText = "Turn 4 • Base Model";
+        if (labelTurn4) {
+          labelTurn4.innerText = "Turn 4";
+          labelTurn4.className = "text-primary font-semibold font-mono";
+        }
+      } else {
+        card4.classList.add('opacity-50');
+        preview4.classList.add('opacity-40');
+        badge4.className = "px-2 py-0.5 rounded font-label-sm text-label-sm uppercase bg-surface-container-high border border-surface-container-highest text-on-surface-variant hover:text-primary transition-colors cursor-pointer";
+        badge4.innerText = "Inactive (Click to Enlist)";
+        desc4.innerText = "Inactive";
+        if (labelTurn4) {
+          labelTurn4.innerText = "—";
+          labelTurn4.className = "text-outline font-semibold font-mono";
+        }
+      }
+    }
+
+    // Dynamic name synching for React overlay demonstration
+    ['p1', 'p2', 'p3', 'p4'].forEach(id => {
+      const input = document.getElementById(`${id}-name`);
+      const label = document.getElementById(`label-name-${id}`);
+      if (input && label) {
+        input.addEventListener('input', (e) => {
+          label.innerText = e.target.value.trim() || id.toUpperCase();
+        });
+      }
+    });
+
+    function beginTournament() {
+      const btn = document.getElementById('btn-start');
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">cyclone</span> INITIALIZING ROUND 1...`;
+      const p1Name = document.getElementById('p1-name').value || 'Rowan';
+      setTimeout(() => {
+        alert(`Starting NumHunt 2.0 Local Tournament (${activeArchers} Archers). First archer up: ${p1Name} (Red). Target: 1-100.`);
+        btn.innerHTML = `<span class="font-bold">◆</span><span class="font-bold tracking-widest">START TOURNAMENT</span><span class="font-label-sm text-label-sm bg-on-primary/20 px-2 py-0.5 rounded text-on-primary font-bold ml-1 font-mono">[ENTER]</span><span class="font-bold">◆</span>`;
+      }, 500);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const activeElem = document.activeElement;
+        if (activeElem && activeElem.tagName === 'INPUT') return;
+        beginTournament();
+      }
+    });
+  </script>
+</div></div></main><footer class="w-full bg-surface-container-lowest/90 backdrop-blur-md border-t border-surface-container-high/60 shadow-lg"><div class="w-full px-margin-mobile lg:px-margin py-space-md flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant font-mono"><span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-container-high text-primary rounded">[ESC]</kbd> Main Menu</span><span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-container-high text-primary rounded">[ENTER]</kbd> Start Tournament</span></div><div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant"><span class="text-primary font-semibold tracking-wider uppercase font-mono">MMXXIV NUMHUNT STUDIOS. • CREATED BY KABIR VYAS</span></div></div></footer>
+
+</body></html>
