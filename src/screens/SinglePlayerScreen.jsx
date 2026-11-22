@@ -18,19 +18,26 @@ import {
 export default function SinglePlayerScreen({ onBackToMenu }) {
   const [level, setLevel] = useState(1);
   const [gameState, setGameState] = useState(() => createSinglePlayerGame(1));
+  const [displayedState, setDisplayedState] = useState(() => gameState);
   const [inputVal, setInputVal] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isShooting, setIsShooting] = useState(false);
+  const [isFlightActive, setIsFlightActive] = useState(false);
   const arenaRef = useRef(null);
+  const pendingStateRef = useRef(null);
 
-  const view = getSinglePlayerView(gameState);
+  const view = getSinglePlayerView(displayedState);
 
   const startNewGame = (lvl = level) => {
+    const next = createSinglePlayerGame(lvl);
     setLevel(lvl);
-    setGameState(createSinglePlayerGame(lvl));
+    setGameState(next);
+    setDisplayedState(next);
+    pendingStateRef.current = null;
     setInputVal('');
     setErrorMessage('');
     setIsShooting(false);
+    setIsFlightActive(false);
     if (arenaRef.current) {
       arenaRef.current.reset();
     }
@@ -44,7 +51,7 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
 
   const handleGuessSubmit = (e) => {
     e?.preventDefault();
-    if (isShooting || view.status !== 'playing') return;
+    if (isShooting || isFlightActive || view.status !== 'playing') return;
     setErrorMessage('');
 
     const res = makeSinglePlayerGuess(gameState, inputVal);
@@ -56,19 +63,24 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
     const nextState = res.state;
     const lastResult = nextState.lastResult;
     setIsShooting(true);
+    setIsFlightActive(true);
+    pendingStateRef.current = nextState;
+    setInputVal('');
 
     // Trigger visual shot in Three.js arena
     if (arenaRef.current) {
       arenaRef.current.shoot(lastResult.direction, lastResult.difference, 'Red');
     }
+  };
 
-    // Update state after slight delay or immediately
-    setGameState(nextState);
-    setInputVal('');
-
-    setTimeout(() => {
-      setIsShooting(false);
-    }, 1200);
+  const handleImpact = () => {
+    if (pendingStateRef.current) {
+      setGameState(pendingStateRef.current);
+      setDisplayedState(pendingStateRef.current);
+      pendingStateRef.current = null;
+    }
+    setIsFlightActive(false);
+    setIsShooting(false);
   };
 
   return (
@@ -130,6 +142,7 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
         <ArcheryArena
           ref={arenaRef}
           playerColor="Red"
+          onImpact={handleImpact}
         />
 
         {/* Tactical Crosshair / Range Overlay Details */}
@@ -142,18 +155,37 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
           {/* Extreme Hint Indicator */}
           {level === 2 && (
             <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded backdrop-blur border text-[11px] font-['JetBrains_Mono'] ${
-              gameState.extremeHintUsed
+              displayedState.extremeHintUsed
                 ? 'bg-[#282a2a]/80 border-[#4e4637] text-[#9b8f7d]'
                 : 'bg-[#f0bf5c]/10 border-[#f0bf5c]/40 text-[#f0bf5c]'
             }`}>
               <span className="material-symbols-outlined text-[14px]">bolt</span>
-              {gameState.extremeHintUsed ? 'EXTREME HINT: SPENT' : 'EXTREME HINT: ARMED (>500)'}
+              {displayedState.extremeHintUsed ? 'EXTREME HINT: SPENT' : 'EXTREME HINT: ARMED (>500)'}
             </div>
           )}
         </div>
 
-        {/* Live Feedback Banner */}
-        {view.lastResult && (
+        {/* Suspense Indicator while Arrow is in Flight */}
+        {isFlightActive && (
+          <div className="absolute top-4 right-4 z-10 max-w-sm animate-pulse pointer-events-none">
+            <div className="px-4 py-2.5 rounded-lg border border-[#f0bf5c]/60 bg-[#191c1c]/90 backdrop-blur-md shadow-2xl flex items-center gap-3">
+              <span className="material-symbols-outlined text-2xl text-[#f0bf5c] animate-spin">
+                radar
+              </span>
+              <div>
+                <div className="text-xs font-['JetBrains_Mono'] text-[#f0bf5c] font-bold tracking-widest uppercase">
+                  ARROW IN FLIGHT...
+                </div>
+                <div className="font-['Space_Grotesk'] text-xs text-[#d2c5b1]">
+                  Aiming at target — tracking trajectory
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Live Feedback Banner (Revealed ONLY after impact) */}
+        {!isFlightActive && view.lastResult && (
           <div className="absolute top-4 right-4 z-10 max-w-sm animate-fade-in">
             <div className={`px-4 py-2.5 rounded-lg border backdrop-blur-md shadow-xl flex items-center gap-3 ${
               view.lastResult.direction === 'correct'
@@ -183,7 +215,7 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
         )}
 
         {/* Victory / Game Over Overlay */}
-        {(view.status === 'won' || view.status === 'lost') && (
+        {!isFlightActive && (view.status === 'won' || view.status === 'lost') && (
           <div className="absolute inset-0 bg-black/85 backdrop-blur-md z-20 flex items-center justify-center p-6 animate-fade-in">
             <div className="max-w-md w-full bg-[#191c1c] border border-[#323535] rounded-xl p-6 text-center shadow-2xl">
               <span className={`material-symbols-outlined text-5xl mb-2 ${
@@ -237,7 +269,7 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
               </span>
               <input
                 type="number"
-                disabled={view.status !== 'playing' || isShooting}
+                disabled={view.status !== 'playing' || isShooting || isFlightActive}
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 placeholder={`Enter your guess (${view.min}–${view.max})...`}
@@ -247,10 +279,10 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
 
             <button
               type="submit"
-              disabled={view.status !== 'playing' || isShooting || !inputVal}
+              disabled={view.status !== 'playing' || isShooting || isFlightActive || !inputVal}
               className="w-full sm:w-auto px-8 py-3.5 bg-[#f0bf5c] text-[#412d00] font-['Space_Grotesk'] font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#ffdea4] active:scale-[0.98] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer shadow-lg"
             >
-              <span>{isShooting ? 'FIRING...' : 'RELEASE SHOT'}</span>
+              <span>{isFlightActive || isShooting ? 'FIRING...' : 'RELEASE SHOT'}</span>
               <span className="material-symbols-outlined text-lg">play_arrow</span>
             </button>
           </div>

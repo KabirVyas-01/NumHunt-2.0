@@ -26,17 +26,24 @@ export default function DuelScreen({ onBackToMenu }) {
 
   // Active game engine state
   const [gameState, setGameState] = useState(null);
+  const [displayedState, setDisplayedState] = useState(null);
   const [secretInput, setSecretInput] = useState('');
   const [guessInput, setGuessInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isShooting, setIsShooting] = useState(false);
+  const [flightStatus, setFlightStatus] = useState(null);
   const arenaRef = useRef(null);
+  const pendingStateRef = useRef(null);
 
-  const view = gameState ? getDuelView(gameState) : null;
+  const view = (displayedState || gameState) ? getDuelView(displayedState || gameState) : null;
 
   const handleStartDuelSetup = () => {
     const duel = createDuelGame(p1Name, p2Name);
     setGameState(duel);
+    setDisplayedState(duel);
+    pendingStateRef.current = null;
+    setFlightStatus(null);
+    setIsShooting(false);
     setPhase('game');
     setSecretInput('');
     setErrorMessage('');
@@ -52,12 +59,15 @@ export default function DuelScreen({ onBackToMenu }) {
       return;
     }
     setGameState(res.state);
+    setDisplayedState(res.state);
     setSecretInput('');
   };
 
   // Handover to P2 for secret setting
   const handleHandoverToP2Secret = () => {
-    setGameState(acknowledgeHandoverToPlayer2Secret(gameState));
+    const next = acknowledgeHandoverToPlayer2Secret(gameState);
+    setGameState(next);
+    setDisplayedState(next);
     setSecretInput('');
     setErrorMessage('');
   };
@@ -72,12 +82,18 @@ export default function DuelScreen({ onBackToMenu }) {
       return;
     }
     setGameState(res.state);
+    setDisplayedState(res.state);
     setSecretInput('');
   };
 
   // Handover acknowledge for battle turns
   const handleAcknowledgeTurnHandover = () => {
-    setGameState(acknowledgeTurnHandover(gameState));
+    const next = acknowledgeTurnHandover(gameState);
+    setGameState(next);
+    setDisplayedState(next);
+    pendingStateRef.current = null;
+    setFlightStatus(null);
+    setIsShooting(false);
     setGuessInput('');
     setErrorMessage('');
     if (arenaRef.current) {
@@ -88,7 +104,7 @@ export default function DuelScreen({ onBackToMenu }) {
   // Live Turn Guess
   const handleDuelGuessSubmit = (e) => {
     e?.preventDefault();
-    if (isShooting || !gameState || gameState.phase !== 'playing') return;
+    if (isShooting || flightStatus || !gameState || gameState.phase !== 'playing') return;
     setErrorMessage('');
 
     const res = makeDuelGuess(gameState, guessInput);
@@ -103,18 +119,24 @@ export default function DuelScreen({ onBackToMenu }) {
     const lastResult = isP1 ? nextState.p1.lastResult : nextState.p2.lastResult;
 
     setIsShooting(true);
+    setFlightStatus('tracking');
+    pendingStateRef.current = nextState;
+    setGuessInput('');
 
     // Trigger visual shot in arena with player's color
     if (arenaRef.current && lastResult) {
       arenaRef.current.shoot(lastResult.direction, lastResult.difference, activePlayerColor);
     }
+  };
 
-    setGameState(nextState);
-    setGuessInput('');
-
-    setTimeout(() => {
-      setIsShooting(false);
-    }, 1200);
+  const handleImpact = () => {
+    if (pendingStateRef.current) {
+      setGameState(pendingStateRef.current);
+      setDisplayedState(pendingStateRef.current);
+      pendingStateRef.current = null;
+    }
+    setFlightStatus(null);
+    setIsShooting(false);
   };
 
   // --- VIEW 1: DUEL NAMES SETUP ---
@@ -435,10 +457,30 @@ export default function DuelScreen({ onBackToMenu }) {
         <ArcheryArena
           ref={arenaRef}
           playerColor={active?.color}
+          onImpact={handleImpact}
         />
 
-        {/* Live Feedback Banner */}
-        {active?.lastResult && (
+        {/* Suspense Indicator while Arrow is in Flight */}
+        {flightStatus === 'tracking' && (
+          <div className="absolute top-4 right-4 z-10 max-w-sm animate-pulse pointer-events-none">
+            <div className="px-4 py-2.5 rounded-lg border border-[#f0bf5c]/60 bg-[#191c1c]/90 backdrop-blur-md shadow-2xl flex items-center gap-3">
+              <span className="material-symbols-outlined text-2xl text-[#f0bf5c] animate-spin">
+                radar
+              </span>
+              <div>
+                <div className="text-xs font-['JetBrains_Mono'] text-[#f0bf5c] font-bold tracking-widest uppercase">
+                  ARROW IN FLIGHT...
+                </div>
+                <div className="font-['Space_Grotesk'] text-xs text-[#d2c5b1]">
+                  Tracking trajectory for {active?.name}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Live Feedback Banner (Revealed only after impact) */}
+        {!flightStatus && active?.lastResult && (
           <div className="absolute top-4 right-4 z-10 max-w-sm animate-fade-in">
             <div className={`px-4 py-2.5 rounded-lg border backdrop-blur-md shadow-xl flex items-center gap-3 ${
               active.lastResult.direction === 'correct'
@@ -473,7 +515,7 @@ export default function DuelScreen({ onBackToMenu }) {
               </span>
               <input
                 type="number"
-                disabled={isShooting}
+                disabled={isShooting || flightStatus}
                 value={guessInput}
                 onChange={(e) => setGuessInput(e.target.value)}
                 placeholder="Enter guess against opponent's target (1–100)..."
@@ -483,10 +525,10 @@ export default function DuelScreen({ onBackToMenu }) {
 
             <button
               type="submit"
-              disabled={isShooting || !guessInput}
+              disabled={isShooting || flightStatus || !guessInput}
               className="w-full sm:w-auto px-8 py-3.5 bg-[#3b82f6] text-white font-['Space_Grotesk'] font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#60a5fa] active:scale-[0.98] transition-all disabled:opacity-40 flex items-center justify-center gap-2 cursor-pointer shadow-lg"
             >
-              <span>{isShooting ? 'FIRING...' : 'RELEASE ARROW'}</span>
+              <span>{flightStatus || isShooting ? 'FIRING...' : 'RELEASE ARROW'}</span>
               <span className="material-symbols-outlined text-lg">play_arrow</span>
             </button>
           </div>

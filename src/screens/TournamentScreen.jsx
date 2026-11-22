@@ -21,17 +21,24 @@ export default function TournamentScreen({ onBackToMenu }) {
   const [playerCount, setPlayerCount] = useState(2);
   const [playerNames, setPlayerNames] = useState(['Archer Red', 'Archer Green', 'Archer Blue', 'Archer Yellow']);
   const [gameState, setGameState] = useState(null);
+  const [displayedState, setDisplayedState] = useState(null);
   const [inputVal, setInputVal] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isShooting, setIsShooting] = useState(false);
+  const [flightStatus, setFlightStatus] = useState(null);
   const arenaRef = useRef(null);
+  const pendingStateRef = useRef(null);
 
-  const view = gameState ? getTournamentView(gameState) : null;
+  const view = (displayedState || gameState) ? getTournamentView(displayedState || gameState) : null;
 
   const handleStartTournament = () => {
     const names = playerNames.slice(0, playerCount);
     const initial = createTournamentGame(playerCount, names);
     setGameState(initial);
+    setDisplayedState(initial);
+    pendingStateRef.current = null;
+    setFlightStatus(null);
+    setIsShooting(false);
     setPhase('game');
   };
 
@@ -43,7 +50,12 @@ export default function TournamentScreen({ onBackToMenu }) {
 
   const handleAcknowledgeHandover = () => {
     if (!gameState) return;
-    setGameState(acknowledgeHandover(gameState));
+    const next = acknowledgeHandover(gameState);
+    setGameState(next);
+    setDisplayedState(next);
+    pendingStateRef.current = null;
+    setFlightStatus(null);
+    setIsShooting(false);
     setInputVal('');
     setErrorMessage('');
     if (arenaRef.current) {
@@ -53,7 +65,7 @@ export default function TournamentScreen({ onBackToMenu }) {
 
   const handleTournamentGuess = (e) => {
     e?.preventDefault();
-    if (isShooting || !view || view.stage !== 'turn') return;
+    if (isShooting || flightStatus || !view || view.stage !== 'turn') return;
     setErrorMessage('');
 
     const res = makeTournamentGuess(gameState, inputVal);
@@ -65,19 +77,25 @@ export default function TournamentScreen({ onBackToMenu }) {
     const nextState = res.state;
     const activePlayer = view.activePlayer;
     setIsShooting(true);
+    setFlightStatus('tracking');
+    pendingStateRef.current = nextState;
+    setInputVal('');
 
     // Trigger visual shot in arena
     const lastResult = nextState.players[gameState.currentPlayerIndex].lastResult;
     if (arenaRef.current && lastResult) {
       arenaRef.current.shoot(lastResult.direction, lastResult.difference, activePlayer.color);
     }
+  };
 
-    setGameState(nextState);
-    setInputVal('');
-
-    setTimeout(() => {
-      setIsShooting(false);
-    }, 1200);
+  const handleImpact = () => {
+    if (pendingStateRef.current) {
+      setGameState(pendingStateRef.current);
+      setDisplayedState(pendingStateRef.current);
+      pendingStateRef.current = null;
+    }
+    setFlightStatus(null);
+    setIsShooting(false);
   };
 
   // --- SUBVIEW 1: SETUP SCREEN ---
@@ -316,10 +334,30 @@ export default function TournamentScreen({ onBackToMenu }) {
         <ArcheryArena
           ref={arenaRef}
           playerColor={active?.color}
+          onImpact={handleImpact}
         />
 
-        {/* Live Feedback Banner */}
-        {active?.lastResult && (
+        {/* Suspense Indicator while Arrow is in Flight */}
+        {flightStatus === 'tracking' && (
+          <div className="absolute top-4 right-4 z-10 max-w-sm animate-pulse pointer-events-none">
+            <div className="px-4 py-2.5 rounded-lg border border-[#f0bf5c]/60 bg-[#191c1c]/90 backdrop-blur-md shadow-2xl flex items-center gap-3">
+              <span className="material-symbols-outlined text-2xl text-[#f0bf5c] animate-spin">
+                radar
+              </span>
+              <div>
+                <div className="text-xs font-['JetBrains_Mono'] text-[#f0bf5c] font-bold tracking-widest uppercase">
+                  ARROW IN FLIGHT...
+                </div>
+                <div className="font-['Space_Grotesk'] text-xs text-[#d2c5b1]">
+                  Tracking trajectory for {active?.name}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Live Feedback Banner (Revealed only after impact) */}
+        {!flightStatus && active?.lastResult && (
           <div className="absolute top-4 right-4 z-10 max-w-sm animate-fade-in">
             <div className={`px-4 py-2.5 rounded-lg border backdrop-blur-md shadow-xl flex items-center gap-3 ${
               active.lastResult.direction === 'correct'
@@ -354,7 +392,7 @@ export default function TournamentScreen({ onBackToMenu }) {
               </span>
               <input
                 type="number"
-                disabled={isShooting}
+                disabled={isShooting || flightStatus}
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 placeholder="Enter your guess (1–100)..."
@@ -364,10 +402,10 @@ export default function TournamentScreen({ onBackToMenu }) {
 
             <button
               type="submit"
-              disabled={isShooting || !inputVal}
+              disabled={isShooting || flightStatus || !inputVal}
               className="w-full sm:w-auto px-8 py-3.5 bg-[#10b981] text-[#0c0f0f] font-['Space_Grotesk'] font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#34d399] active:scale-[0.98] transition-all disabled:opacity-40 flex items-center justify-center gap-2 cursor-pointer shadow-lg"
             >
-              <span>{isShooting ? 'FIRING...' : 'RELEASE SHOT'}</span>
+              <span>{flightStatus || isShooting ? 'FIRING...' : 'RELEASE SHOT'}</span>
               <span className="material-symbols-outlined text-lg">play_arrow</span>
             </button>
           </div>
