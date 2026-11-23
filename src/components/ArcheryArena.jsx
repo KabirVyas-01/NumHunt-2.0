@@ -3,17 +3,12 @@ import { ArcherySceneManager } from '../three/scene/archerySceneManager.js';
 
 /**
  * Reusable Archery Arena 3D Component for NumHunt 2.0.
- * 
- * Cleanly handles:
- * - Canvas lifecycle and WebGL mounting
- * - Proper cleanup & memory disposal on unmount
- * - Resize listeners
- * - External shot trigger commands via ref or callbacks
+ * Supports onImpact callback fired when the arrow strikes its destination.
  */
 const ArcheryArena = forwardRef(function ArcheryArena(
   {
     playerColor = 'Red',
-    onFeedbackReady,
+    onImpact,
     style = {},
     className = ''
   },
@@ -21,14 +16,23 @@ const ArcheryArena = forwardRef(function ArcheryArena(
 ) {
   const containerRef = useRef(null);
   const sceneManagerRef = useRef(null);
+  const onImpactRef = useRef(onImpact);
+
+  // Keep latest onImpact callback reference fresh
+  useEffect(() => {
+    onImpactRef.current = onImpact;
+  }, [onImpact]);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Initialize Three.js scene manager
     const manager = new ArcherySceneManager(containerRef.current, {
       playerColor,
-      onFeedbackReady
+      onImpact: (shotData) => {
+        if (onImpactRef.current) {
+          onImpactRef.current(shotData);
+        }
+      }
     });
     sceneManagerRef.current = manager;
 
@@ -40,14 +44,12 @@ const ArcheryArena = forwardRef(function ArcheryArena(
     };
   }, []);
 
-  // Update player color if prop changes
   useEffect(() => {
     if (sceneManagerRef.current) {
       sceneManagerRef.current.setPlayerColor(playerColor);
     }
   }, [playerColor]);
 
-  // Expose imperative control methods for parent game controller / dev controls
   useImperativeHandle(ref, () => ({
     shoot: (outcome, difference, color = playerColor) => {
       if (sceneManagerRef.current) {
