@@ -73,4 +73,14 @@ describe('ArcheryShotAnimator - Miss and Hit Dynamics', () => {
     expect(animator.flightEnd.y).toBeGreaterThan(1.70);
     expect(animator.flightEnd.y).toBeLessThan(1.90);
   });
+
+  it('properly manages vibration interval and resets target position on reset and dispose', () => {
+    const target = { position: new THREE.Vector3(4.5, 0, 0) };
+    const animator = new ArcheryShotAnimator(dummyScene, dummyArcher, target);
+    animator.triggerTargetVibration();
+    expect(animator.vibrationInterval).not.toBeNull();
+    animator.reset();
+    expect(animator.vibrationInterval).toBeNull();
+    expect(target.position.x).toBe(4.5);
+  });
 });

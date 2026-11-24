@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ArcheryArena from '../components/ArcheryArena';
+import soundService from '../services/soundService';
 import {
   createSinglePlayerGame,
   makeSinglePlayerGuess,
@@ -29,6 +30,7 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
   const view = getSinglePlayerView(displayedState);
 
   const startNewGame = (lvl = level) => {
+    soundService.playButtonClick();
     const next = createSinglePlayerGame(lvl);
     setLevel(lvl);
     setGameState(next);
@@ -75,8 +77,12 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
 
   const handleImpact = () => {
     if (pendingStateRef.current) {
-      setGameState(pendingStateRef.current);
-      setDisplayedState(pendingStateRef.current);
+      const next = pendingStateRef.current;
+      setGameState(next);
+      setDisplayedState(next);
+      if (next.status === 'won') {
+        soundService.playVictory();
+      }
       pendingStateRef.current = null;
     }
     setIsFlightActive(false);
@@ -89,8 +95,12 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
       <div className="w-full bg-[#191c1c] border-b border-[#323535] px-4 py-3 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <button
-            onClick={onBackToMenu}
-            className="flex items-center gap-1.5 text-xs font-['JetBrains_Mono'] text-[#9b8f7d] hover:text-[#f0bf5c] transition-colors bg-[#282a2a] px-3 py-1.5 rounded"
+            onClick={() => {
+              soundService.playButtonClick();
+              onBackToMenu();
+            }}
+            aria-label="Back to Main Menu"
+            className="flex items-center gap-1.5 text-xs font-['JetBrains_Mono'] text-[#9b8f7d] hover:text-[#f0bf5c] transition-colors bg-[#282a2a] px-3 py-1.5 rounded cursor-pointer"
           >
             <span className="material-symbols-outlined text-[16px]">arrow_back</span>
             <span>BACK</span>
@@ -247,8 +257,11 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
                   PLAY AGAIN
                 </button>
                 <button
-                  onClick={onBackToMenu}
-                  className="px-5 py-2.5 bg-[#282a2a] text-[#e1e3e2] font-['Space_Grotesk'] font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-[#323535] transition-colors"
+                  onClick={() => {
+                    soundService.playButtonClick();
+                    onBackToMenu();
+                  }}
+                  className="px-5 py-2.5 bg-[#282a2a] text-[#e1e3e2] font-['Space_Grotesk'] font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-[#323535] transition-colors cursor-pointer"
                 >
                   MAIN MENU
                 </button>
@@ -269,6 +282,7 @@ export default function SinglePlayerScreen({ onBackToMenu }) {
               </span>
               <input
                 type="number"
+                aria-label={`Enter your guess between ${view.min} and ${view.max}`}
                 disabled={view.status !== 'playing' || isShooting || isFlightActive}
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}

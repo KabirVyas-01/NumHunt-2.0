@@ -1,7 +1,13 @@
 import React from 'react';
+import soundService from '../services/soundService';
 
 export default function TacticalBriefModal({ isOpen, onClose }) {
   if (!isOpen) return null;
+
+  const handleClose = () => {
+    soundService.playButtonClick();
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
@@ -14,8 +20,9 @@ export default function TacticalBriefModal({ isOpen, onClose }) {
             </h2>
           </div>
           <button
-            onClick={onClose}
-            className="text-[#9b8f7d] hover:text-[#e1e3e2] p-1 rounded hover:bg-[#282a2a]"
+            onClick={handleClose}
+            aria-label="Close Tactical Protocol Briefing"
+            className="text-[#9b8f7d] hover:text-[#e1e3e2] p-1 rounded hover:bg-[#282a2a] cursor-pointer"
           >
             <span className="material-symbols-outlined text-2xl">close</span>
           </button>

@@ -27,6 +27,8 @@ export class ArcheryShotAnimator {
     // Arrows stuck in scene
     this.stuckArrows = [];
     this.particles = [];
+    this.vibrationInterval = null;
+    this.targetOrigX = this.target.position.x;
   }
 
   /**
@@ -250,13 +252,19 @@ export class ArcheryShotAnimator {
   }
 
   triggerTargetVibration() {
-    const origX = this.target.position.x;
+    if (this.vibrationInterval) {
+      clearInterval(this.vibrationInterval);
+      this.vibrationInterval = null;
+      this.target.position.x = this.targetOrigX;
+    }
+    const origX = this.targetOrigX;
     let t = 0;
-    const interval = setInterval(() => {
+    this.vibrationInterval = setInterval(() => {
       t += 0.016;
       if (t >= 0.22) {
         this.target.position.x = origX;
-        clearInterval(interval);
+        clearInterval(this.vibrationInterval);
+        this.vibrationInterval = null;
       } else {
         const offset = Math.sin(t * 65) * 0.025 * (1 - t / 0.22);
         this.target.position.x = origX + offset;
@@ -265,6 +273,12 @@ export class ArcheryShotAnimator {
   }
 
   reset() {
+    if (this.vibrationInterval) {
+      clearInterval(this.vibrationInterval);
+      this.vibrationInterval = null;
+      this.target.position.x = this.targetOrigX;
+    }
+
     this.stuckArrows.forEach(arrow => {
       this.scene.remove(arrow);
       arrow.traverse(child => {

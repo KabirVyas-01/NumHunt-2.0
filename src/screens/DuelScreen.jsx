@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ArcheryArena from '../components/ArcheryArena';
+import soundService from '../services/soundService';
 import {
   createDuelGame,
   setPlayer1Secret,
@@ -131,8 +132,12 @@ export default function DuelScreen({ onBackToMenu }) {
 
   const handleImpact = () => {
     if (pendingStateRef.current) {
-      setGameState(pendingStateRef.current);
-      setDisplayedState(pendingStateRef.current);
+      const next = pendingStateRef.current;
+      setGameState(next);
+      setDisplayedState(next);
+      if (next.phase === 'game_over') {
+        soundService.playVictory();
+      }
       pendingStateRef.current = null;
     }
     setFlightStatus(null);
@@ -145,8 +150,12 @@ export default function DuelScreen({ onBackToMenu }) {
       <div className="w-full min-h-screen pt-16 flex flex-col bg-[#111414] select-none text-[#e1e3e2]">
         <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 py-8">
           <button
-            onClick={onBackToMenu}
-            className="flex items-center gap-1.5 text-xs font-['JetBrains_Mono'] text-[#9b8f7d] hover:text-[#f0bf5c] transition-colors mb-6 bg-[#191c1c] px-3 py-1.5 rounded border border-[#323535]"
+            onClick={() => {
+              soundService.playButtonClick();
+              onBackToMenu();
+            }}
+            aria-label="Back to Main Menu"
+            className="flex items-center gap-1.5 text-xs font-['JetBrains_Mono'] text-[#9b8f7d] hover:text-[#f0bf5c] transition-colors mb-6 bg-[#191c1c] px-3 py-1.5 rounded border border-[#323535] cursor-pointer"
           >
             <span className="material-symbols-outlined text-[16px]">arrow_back</span>
             <span>BACK TO MENU</span>
@@ -418,8 +427,11 @@ export default function DuelScreen({ onBackToMenu }) {
               REMATCH DUEL
             </button>
             <button
-              onClick={onBackToMenu}
-              className="px-6 py-3 bg-[#282a2a] text-[#e1e3e2] font-['Space_Grotesk'] font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-[#323535] transition-colors"
+              onClick={() => {
+                soundService.playButtonClick();
+                onBackToMenu();
+              }}
+              className="px-6 py-3 bg-[#282a2a] text-[#e1e3e2] font-['Space_Grotesk'] font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-[#323535] transition-colors cursor-pointer"
             >
               MAIN MENU
             </button>
@@ -515,6 +527,7 @@ export default function DuelScreen({ onBackToMenu }) {
               </span>
               <input
                 type="number"
+                aria-label="Enter guess against opponent target (1–100)"
                 disabled={isShooting || flightStatus}
                 value={guessInput}
                 onChange={(e) => setGuessInput(e.target.value)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import soundService from '../services/soundService';
 
 /**
  * Main Menu Screen matching the Stitch UI export precisely.
@@ -102,7 +103,11 @@ export default function MainMenuScreen({ onSelectMode, onOpenBrief }) {
                 </div>
 
                 <button
-                  onClick={() => onSelectMode(mode.id)}
+                  onClick={() => {
+                    soundService.playButtonClick();
+                    onSelectMode(mode.id);
+                  }}
+                  aria-label={mode.buttonText}
                   className="w-full py-3 px-4 rounded-lg bg-[#f0bf5c] text-[#412d00] font-['Space_Grotesk'] font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#ffdea4] active:scale-[0.98] transition-all cursor-pointer shadow-lg"
                 >
                   <span>{mode.buttonText}</span>
