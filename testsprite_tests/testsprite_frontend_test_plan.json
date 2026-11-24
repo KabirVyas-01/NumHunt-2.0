@@ -1,0 +1,715 @@
+[
+  {
+    "id": "TC001",
+    "title": "Play and finish a level 1 solo round",
+    "description": "This verifies that a single player can choose level 1, make guesses, receive trajectory feedback, and complete the round with attempts updating correctly.",
+    "category": "Single Player Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Single Player mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose Level 1"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid guess into the guess field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the guess"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify archery feedback is displayed and the remaining attempts update"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Complete a tournament with custom players and view the podium",
+    "description": "This verifies that a tournament can be configured with custom names, played through local handovers, and ավարտed with a final leaderboard and winners podium.",
+    "category": "Tournament Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Tournament mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose the number of players"
+      },
+      {
+        "type": "action",
+        "description": "Enter custom names for all players"
+      },
+      {
+        "type": "action",
+        "description": "Start the tournament"
+      },
+      {
+        "type": "action",
+        "description": "Mark the current player as ready"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid guess for the current player"
+      },
+      {
+        "type": "action",
+        "description": "Submit the guess"
+      },
+      {
+        "type": "action",
+        "description": "Continue through the remaining turns until the tournament ends"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the final leaderboard and winners podium are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Start single player mode from the main menu",
+    "description": "This verifies that a player can choose the solo mode from the main screen and begin the single player setup flow.",
+    "category": "Game Mode Selection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Single Player mode entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the single player setup screen is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Win a duel and reveal both secrets",
+    "description": "This test verifies that a duel can be resolved by a correct guess and that the result screen reveals both secret numbers and the winner.",
+    "category": "Head-to-Head Duel Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid secret number for the first player"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid secret number for the second player"
+      },
+      {
+        "type": "action",
+        "description": "Start the duel"
+      },
+      {
+        "type": "action",
+        "description": "Submit a guess that matches the current opponent secret number"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the duel result screen is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify both secret numbers and the winner are revealed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Resolve a duel on the first correct guess and reveal the winner",
+    "description": "This verifies that alternating guesses in duel mode can end the match immediately when one player finds the opponent's secret number and the winner plus both secrets are revealed.",
+    "category": "Head-to-Head Duel",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Enter a secret number for player one"
+      },
+      {
+        "type": "action",
+        "description": "Enter a secret number for player two"
+      },
+      {
+        "type": "action",
+        "description": "Start the duel"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid guess for the current player"
+      },
+      {
+        "type": "action",
+        "description": "Submit the guess"
+      },
+      {
+        "type": "action",
+        "description": "Continue alternating guesses until one player wins"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the winner and both secret numbers are revealed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Start tournament mode from the main menu",
+    "description": "This verifies that a player can choose the tournament mode from the main screen and begin the tournament setup flow.",
+    "category": "Game Mode Selection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Tournament mode entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the tournament setup screen is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Start a duel match and reach alternating turns",
+    "description": "This test verifies that a player can configure both secret numbers, start a duel, and reach the alternating guessing phase with the correct match state ready.",
+    "category": "Head-to-Head Duel Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid secret number for the first player"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid secret number for the second player"
+      },
+      {
+        "type": "action",
+        "description": "Start the duel"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the duel turn-taking interface is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the current turn indicator is shown"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Start duel mode from the main menu",
+    "description": "This verifies that a player can choose the head-to-head duel mode from the main screen and begin the duel setup flow.",
+    "category": "Game Mode Selection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the duel setup screen is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Persist audio setting across sessions",
+    "description": "This verifies that the audio toggle state is restored after leaving the app and returning later.",
+    "category": "Game Mode Selection",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the audio setting off"
+      },
+      {
+        "type": "action",
+        "description": "Leave the app and return to the main screen"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the audio setting remains off"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Mute and unmute audio from the header",
+    "description": "This test verifies that audio can be toggled from the header and the setting changes the current sound state.",
+    "category": "Audio Effects Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the audio setting off"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the audio setting on"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the audio setting reflects the muted and unmuted state changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the header audio control remains available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Alternate turns correctly in tournament play",
+    "description": "This verifies that after one player's guess, the next player is handed the device and the turn sequence continues correctly.",
+    "category": "Tournament Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Tournament mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose the number of players"
+      },
+      {
+        "type": "action",
+        "description": "Enter custom names for all players"
+      },
+      {
+        "type": "action",
+        "description": "Start the tournament"
+      },
+      {
+        "type": "action",
+        "description": "Mark the current player as ready"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid guess for the current player"
+      },
+      {
+        "type": "action",
+        "description": "Submit the guess"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the next player handover screen is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Show the private handover before each tournament turn",
+    "description": "This verifies that tournament play uses a private handover screen before each player begins their turn.",
+    "category": "Tournament Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Tournament mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose the number of players"
+      },
+      {
+        "type": "action",
+        "description": "Enter custom names for all players"
+      },
+      {
+        "type": "action",
+        "description": "Start the tournament"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the private handover screen is displayed before play begins"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Set both duel secrets and begin the match",
+    "description": "This verifies that both players can enter secret numbers and start a head-to-head duel with the proper setup completed.",
+    "category": "Head-to-Head Duel",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Enter a secret number for player one"
+      },
+      {
+        "type": "action",
+        "description": "Enter a secret number for player two"
+      },
+      {
+        "type": "action",
+        "description": "Start the duel"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the duel match screen is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Alternate duel guesses between players",
+    "description": "This test verifies that duel turns alternate correctly when guesses are incorrect and that the game hands control to the other player after each turn.",
+    "category": "Head-to-Head Duel Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid secret number for the first player"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid secret number for the second player"
+      },
+      {
+        "type": "action",
+        "description": "Start the duel"
+      },
+      {
+        "type": "action",
+        "description": "Submit an incorrect guess"
+      },
+      {
+        "type": "action",
+        "description": "Submit another incorrect guess on the next turn"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the turn alternates between the two players"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify guess feedback is shown after each turn"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Restart a solo game after completion",
+    "description": "This verifies that a completed single player session can be restarted into a fresh new game.",
+    "category": "Single Player Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Single Player mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose Level 1"
+      },
+      {
+        "type": "action",
+        "description": "Complete the round"
+      },
+      {
+        "type": "action",
+        "description": "Click Restart"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a new single player session is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Restore audio preference after returning to the app",
+    "description": "This test verifies that the chosen audio setting is remembered locally after leaving and returning to the app.",
+    "category": "Audio Effects Control",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the audio setting off"
+      },
+      {
+        "type": "action",
+        "description": "Leave the page"
+      },
+      {
+        "type": "action",
+        "description": "Navigate back to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the audio setting remains muted after returning"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the main interface loads normally after returning"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Use keyboard submission in solo play",
+    "description": "This verifies that a single player can submit a guess with the keyboard and continue the round normally.",
+    "category": "Single Player Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Single Player mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose Level 1"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid guess into the guess field"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the guess is submitted and gameplay feedback is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Switch between all play modes from the home screen",
+    "description": "This test verifies that selecting each main mode from the home screen opens the correct setup flow without leaking state from another mode.",
+    "category": "Head-to-Head Duel Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the Single Player mode setup"
+      },
+      {
+        "type": "action",
+        "description": "Return to the home screen"
+      },
+      {
+        "type": "action",
+        "description": "Open the Tournament mode setup"
+      },
+      {
+        "type": "action",
+        "description": "Return to the home screen"
+      },
+      {
+        "type": "action",
+        "description": "Open the Head-to-Head Duel mode setup"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify each mode opens its own setup flow"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no previous mode state is carried into the final setup screen"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Trigger the level 2 extreme hint",
+    "description": "This verifies that level 2 shows the extreme hint when a guess is far from the target.",
+    "category": "Single Player Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Single Player mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Choose Level 2"
+      },
+      {
+        "type": "action",
+        "description": "Enter a distant valid guess into the guess field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the guess"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the extreme hint is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC020",
+    "title": "Reject invalid tournament player setup",
+    "description": "This verifies that tournament setup prevents starting with an invalid player count or incomplete player names.",
+    "category": "Tournament Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Tournament mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to start the tournament with an invalid player count or incomplete names"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify setup validation is displayed and the tournament does not start"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC021",
+    "title": "Reject invalid duel secret numbers",
+    "description": "This test verifies that the duel setup prevents starting with invalid secret number input and shows validation feedback.",
+    "category": "Head-to-Head Duel Mode",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the Head-to-Head Duel mode entry"
+      },
+      {
+        "type": "action",
+        "description": "Leave the first secret number empty"
+      },
+      {
+        "type": "action",
+        "description": "Enter an invalid secret number for the second player"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to start the duel"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are shown for the invalid secret number inputs"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the duel does not start"
+      }
+    ],
+    "priority": "Low"
+  }
+]
