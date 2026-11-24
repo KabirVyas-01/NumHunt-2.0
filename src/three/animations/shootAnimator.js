@@ -1,3 +1,4 @@
+import soundService from '../../services/soundService.js';
 import * as THREE from 'three';
 import { createArrowMesh } from '../characters/archer.js';
 
@@ -116,6 +117,7 @@ export class ArcheryShotAnimator {
       this.archer.userData.setDrawProgress(0);
       if (this.elapsed >= 0.18) {
         this.state = 'DRAWING';
+        soundService.playBowDraw();
         this.elapsed = 0;
       }
     }
@@ -128,6 +130,7 @@ export class ArcheryShotAnimator {
 
       if (this.elapsed >= 0.60) {
         this.state = 'FLYING';
+        soundService.playArrowRelease();
         this.elapsed = 0;
         this.flightProgress = 0;
 
@@ -179,12 +182,15 @@ export class ArcheryShotAnimator {
 
         // Particle FX and target interaction
         if (this.shotData.outcome === 'correct') {
+          soundService.playBullseyeImpact();
           this.triggerTargetVibration();
           this.spawnImpactParticles(this.flightEnd, 0xfacc15, 14); // Target gold/wood splinters
         } else if (this.shotData.outcome === 'lower') {
+          soundService.playGroundImpact();
           this.spawnImpactParticles(this.flightEnd, 0x4a3525, 12); // Ground dirt burst
         } else {
-          this.spawnImpactParticles(this.flightEnd, 0x2e4624, 10); // Distant ground turf
+          this.spawnImpactParticles(this.flightEnd, 0x2e4624, 10);
+          soundService.playGroundImpact(); // Distant ground turf
         }
 
         if (this.onImpact) {

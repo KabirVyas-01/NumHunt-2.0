@@ -19,7 +19,6 @@ describe('ArcheryShotAnimator - Miss and Hit Dynamics', () => {
   const targetBossRadius = 0.85;
   const targetBossY = 1.80;
   const targetTopY = targetBossY + targetBossRadius; // 2.65m
-  const targetBottomY = targetBossY - targetBossRadius; // 0.95m
   const targetX = 4.5;
 
   it('LOWER guess must miss target completely by dropping to the ground short of target', () => {

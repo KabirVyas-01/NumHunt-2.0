@@ -3,9 +3,7 @@ import {
   createTournamentGame,
   makeTournamentGuess,
   acknowledgeHandover,
-  calculateTournamentWinners,
-  getTournamentView,
-  TOURNAMENT_COLORS
+  getTournamentView
 } from '../game/tournament/tournamentEngine.js';
 
 describe('Tournament Mode Engine', () => {

@@ -1,23 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import soundService from '../services/soundService';
 
 /**
  * Top Tactical Precision Navigation Header from Stitch Design.
  * Features:
  * - Brand emblem & v2.0.4-PROD badge
- * - Audio toggle & rulebook / tactical brief modal
- * - Current screen / mode indicator
+ * - Audio toggle synced with soundService & localStorage
+ * - Tactical rules modal trigger
+ * - Quick Return to Menu action
  */
 export default function Header({ currentScreen, onNavigate, onOpenBrief }) {
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(() => soundService.isMuted());
+
+  useEffect(() => {
+    soundService.setMuted(isMuted);
+  }, [isMuted]);
+
+  const toggleAudio = () => {
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    soundService.setMuted(nextMuted);
+    if (!nextMuted) {
+      soundService.playButtonClick();
+    }
+  };
+
+  const handleNav = (screen) => {
+    soundService.playButtonClick();
+    onNavigate(screen);
+  };
+
+  const handleBrief = () => {
+    soundService.playButtonClick();
+    onOpenBrief();
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0c0f0f]/85 backdrop-blur-xl border-b border-[#323535]/50 shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
       <div className="h-16 w-full px-4 md:px-8 flex items-center justify-between">
-        {/* Left Branding */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => onNavigate('main_menu')}
+            onClick={() => handleNav('main_menu')}
             className="flex items-center gap-2 group cursor-pointer focus:outline-none"
+            aria-label="Return to Main Menu"
           >
             <span className="material-symbols-outlined text-[#f0bf5c] text-[24px] group-hover:scale-110 transition-transform">
               shield
@@ -31,34 +56,33 @@ export default function Header({ currentScreen, onNavigate, onOpenBrief }) {
           </span>
         </div>
 
-        {/* Right Action Icons */}
         <div className="flex items-center gap-2 md:gap-3">
-          {/* Tactical Briefing / Rules */}
           <button
-            onClick={onOpenBrief}
+            onClick={handleBrief}
             title="Tactical Protocol Briefing"
-            className="h-9 px-3 flex items-center gap-1.5 rounded bg-[#191c1c] text-[#d2c5b1] hover:bg-[#282a2a] hover:text-[#e1e3e2] transition-colors border border-[#323535]/60 text-xs font-['JetBrains_Mono']"
+            aria-label="Tactical Rules Protocol"
+            className="h-9 px-3 flex items-center gap-1.5 rounded bg-[#191c1c] text-[#d2c5b1] hover:bg-[#282a2a] hover:text-[#e1e3e2] transition-colors border border-[#323535]/60 text-xs font-['JetBrains_Mono'] cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px] text-[#f0bf5c]">help</span>
             <span className="hidden md:inline font-semibold">RULES</span>
           </button>
 
-          {/* Audio toggle */}
           <button
-            onClick={() => setIsMuted(!isMuted)}
+            onClick={toggleAudio}
             title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-            className="w-9 h-9 flex items-center justify-center rounded bg-[#191c1c] text-[#d2c5b1] hover:bg-[#282a2a] hover:text-[#e1e3e2] transition-colors border border-[#323535]/60"
+            aria-label={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
+            className="w-9 h-9 flex items-center justify-center rounded bg-[#191c1c] text-[#d2c5b1] hover:bg-[#282a2a] hover:text-[#e1e3e2] transition-colors border border-[#323535]/60 cursor-pointer"
           >
             <span className="material-symbols-outlined text-[19px]">
               {isMuted ? 'volume_off' : 'volume_up'}
             </span>
           </button>
 
-          {/* Quick Home button if not on main menu */}
           {currentScreen !== 'main_menu' && (
             <button
-              onClick={() => onNavigate('main_menu')}
-              className="h-9 px-3 flex items-center gap-1.5 rounded bg-[#f0bf5c]/10 text-[#f0bf5c] hover:bg-[#f0bf5c]/20 transition-colors border border-[#f0bf5c]/30 text-xs font-['JetBrains_Mono'] font-bold"
+              onClick={() => handleNav('main_menu')}
+              aria-label="Back to Main Menu"
+              className="h-9 px-3 flex items-center gap-1.5 rounded bg-[#f0bf5c]/10 text-[#f0bf5c] hover:bg-[#f0bf5c]/20 transition-colors border border-[#f0bf5c]/30 text-xs font-['JetBrains_Mono'] font-bold cursor-pointer"
             >
               <span className="material-symbols-outlined text-[18px]">home</span>
               <span className="hidden sm:inline">MENU</span>

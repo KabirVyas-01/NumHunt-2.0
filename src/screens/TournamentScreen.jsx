@@ -217,7 +217,7 @@ export default function TournamentScreen({ onBackToMenu }) {
 
           {/* Leaderboard Table */}
           <div className="space-y-3 mb-8 text-left">
-            {view.leaderboard.map((p, idx) => {
+            {view.leaderboard.map((p) => {
               const isWinner = view.winners.some(w => w.id === p.id);
               return (
                 <div

@@ -2,8 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   createSinglePlayerGame,
   makeSinglePlayerGuess,
-  getSinglePlayerView,
-  SINGLE_PLAYER_LEVELS
+  getSinglePlayerView
 } from '../game/singlePlayer/singlePlayerEngine.js';
 
 describe('Single Player Engine', () => {

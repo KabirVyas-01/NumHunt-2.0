@@ -7,9 +7,7 @@ import {
 import {
   createTournamentGame,
   makeTournamentGuess,
-  acknowledgeHandover,
-  calculateTournamentWinners,
-  getTournamentView
+  acknowledgeHandover
 } from '../game/tournament/tournamentEngine.js';
 import {
   createDuelGame,
