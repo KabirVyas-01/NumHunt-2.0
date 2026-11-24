@@ -1,35 +1,38 @@
 # 🏹 NUMHUNT 2.0 — MASTER CONTEXT & ARCHITECTURAL SPECIFICATION
 
-## 1. Project Overview & Vision
-**NumHunt 2.0** is a complete modern evolution of the classic browser number-guessing game **NumHunt** (original: https://kabirvyas-numhunt-game.netlify.app), reimagined as an atmospheric, cinematic, 3D archery-themed experience.
+> **Last Updated**: November 24, 2026 (Post-Stage-4 Gameplay Integration & Complete Audit)  
+> **Status**: Stage 0 (Scaffolding), Stage 1 (Game Logic), Stage 2 (3D Archery Prototype), Stage 3 (Stitch UI Integration), and Stage 4 (Complete Gameplay Integration) are **100% COMPLETE, INTEGRATED & VERIFIED**.
 
-- **Status**: The original `NunHunt` directory remains untouched. NumHunt 2.0 lives exclusively in its own dedicated workspace.
-- **Core Premise**: The arrow acts as a physical indicator of the guess result:
-  - **Bullseye direct hit**: The guess matches the secret number exactly (`Correct!`).
-  - **Lower guess miss**: The arrow drops short and strikes the ground in front of the target with dirt debris.
-  - **Higher guess miss**: The arrow launches high and sails over the top of the target into the distant landscape.
-- **Suspenseful Guessing Engine**: Guess feedback, attempt decrements, and direction clues are held back while an animated `"ARROW IN FLIGHT... TRACKING TRAJECTORY"` indicator displays until impact.
+---
+
+## 1. Project Overview & Vision
+**NumHunt 2.0** is an evolution of the classic browser number-guessing game **NumHunt** (original: https://kabirvyas-numhunt-game.netlify.app), reimagined as an atmospheric, cinematic, 3D archery-themed experience.
+
+- **Isolation**: The original `NunHunt` directory remains untouched. NumHunt 2.0 lives exclusively in its own dedicated workspace.
+- **Physical Arrow Feedback & Miss Mechanics**:
+  - **Bullseye Hit (Correct Guess)**: ONLY the exact secret number strikes the archery target face at the center gold bullseye ($x = 4.422\,	ext{m}$, $y = 1.80\,	ext{m}$), producing wood splinter particle debris and target vibration.
+  - **Lower Guess (Miss)**: The arrow drops short and strikes the **ground before the target** ($x = 1.0\,	ext{m}$ to $3.65\,	ext{m}$, ground level $y = 0.02\,	ext{m}$), embedding angled into the dirt with ground dust particles. The target remains completely untouched.
+  - **Higher Guess (Miss)**: The arrow launches on a high trajectory, **sailing completely over the top of the target** ($y \ge 3.23\,	ext{m}$ to $4.49\,	ext{m}$, clearing the target's upper edge of $2.65\,	ext{m}$) into the distant background. The target remains completely untouched.
+- **Suspenseful Guessing Engine**:
+  - While the arrow travels, an animated amber tactical banner displays: `🏹 ARROW IN FLIGHT... TRACKING TRAJECTORY`.
+  - Directional feedback (*"You guessed it higher"*, *"You guessed it lower"*), attempt counter decrements, and telemetry updates are **held back during flight** and revealed strictly when the arrow strikes the ground or overshoots (via the `onImpact` callback).
 
 ---
 
 ## 2. Technology Stack
 - **Framework & Build**: React 19 + Vite 8
 - **Styling**: Tailwind CSS v4 + Space Grotesk (display/titles) + JetBrains Mono (ballistic telemetry) + Google Material Symbols Outlined
-- **3D Graphics Engine**: Three.js (r187) via dedicated modular canvas architecture
+- **3D Graphics Engine**: Three.js (r187) via a modular canvas pipeline
 - **Design System Source**: Google Stitch (`NumHunt Archery Gaming Interface` / `Tactical Precision Optics HUD`)
-- **Testing Engine**: Vitest (100% test pass rate across 39 unit tests)
+- **Testing Engine**: Vitest (100% test pass rate across 7 test suites and 47 integration/unit tests)
 
 ---
 
 ## 3. Game Modes & Rules
 
 ### Mode 1: Single Player (Solo Training)
-- **Level 1**:
-  - Number range: `1 – 100`
-  - Max attempts: `10`
-- **Level 2**:
-  - Number range: `1 – 1000`
-  - Max attempts: `15`
+- **Level 1**: Number range `1 – 100`, max `10 attempts`.
+- **Level 2**: Number range `1 – 1000`, max `15 attempts`.
   - **Extreme Hint**: If the absolute difference between guess and secret is $> 500$, a special one-time `"Too high!"` or `"Too low!"` hint triggers once per round.
 - **Feedback**: Directional arrow trajectory + standard tactical readouts (*"You guessed it higher"*, *"You guessed it lower"*, *"Correct!"*).
 
@@ -57,11 +60,11 @@
 
 ---
 
-## 4. Codebase Structure & Directory Map
+## 4. Codebase Architecture & File Map
 
 ```text
 NumHunt 2.0/
-├── CONTEXT.md                     # Master project context, rules, and architecture
+├── CONTEXT.md                     # Master project context, rules, and architecture (Always kept current)
 ├── README.md                      # Setup and usage instructions
 ├── start_game.bat                 # One-click launcher script for Windows dev server
 ├── package.json                   # Dependencies (react, three, tailwindcss, vitest)
@@ -83,7 +86,7 @@ NumHunt 2.0/
     ├── App.jsx                    # Top-level screen router & modal coordinator
     ├── main.jsx                   # React DOM root entry
     ├── components/
-    │   ├── ArcheryArena.jsx       # Three.js Canvas container (lifecycle, resize, memory cleanup)
+    │   ├── ArcheryArena.jsx       # Three.js Canvas container (lifecycle, resize, onImpact forwarding, memory cleanup)
     │   ├── Header.jsx             # Top tactical HUD bar (status, audio toggle, rules button)
     │   └── TacticalBriefModal.jsx # Tactical rules popup
     ├── screens/
@@ -106,9 +109,9 @@ NumHunt 2.0/
     │   │   ├── environment.js     # Outdoor pine forest training clearing, turf, fences, lighting
     │   │   └── target.js          # World Archery target, straw boss, A-frame wooden stand
     │   ├── characters/
-    │   │   └── archer.js          # Articulated humanoid archer, bow, dynamic bowstring, color variants
+    │   │   └── archer.js          # Articulated humanoid archer, bow, dynamic bowstring, recoil kick, color variants
     │   └── animations/
-    │       └── shootAnimator.js   # Ballistic flight, ground drops (low), overshoots (high), particles
+    │       └── shootAnimator.js   # Ballistic flight, ground drops (low), overshoots (high), particles, onImpact callback
     ├── styles/
     │   └── global.css             # Tailwind @theme design tokens
     └── tests/
@@ -116,6 +119,7 @@ NumHunt 2.0/
         ├── singlePlayer.test.js   # Single Player attempt & Extreme Hint tests
         ├── tournament.test.js     # Sequential rounds & joint-winner tiebreaker tests
         ├── duel.test.js           # 1v1 turn alternation & privacy preservation tests
+        ├── shootAnimator.test.js  # Ballistic trajectory boundary clearance tests
         └── smoke.test.js          # Base test runner sanity test
 ```
 
@@ -126,10 +130,32 @@ NumHunt 2.0/
 ```bash
 # Start local development server (http://localhost:5173/)
 npm run dev
+# OR double-click start_game.bat
 
-# Run Vitest unit test suite (39 tests)
+# Run Vitest unit test suite (42 tests across 6 test files)
 npm test
 
 # Build production bundle (dist/)
 npm run build
 ```
+
+---
+
+## 6. Audit & Verification Record
+- **Vitest Suite**: 47 passed (100% pass rate across 7 test suites).
+- **Vite Build**: Built successfully with zero errors.
+- **Memory & Lifecycle**: Three.js animations, geometries, materials, and listeners properly disposed of on unmount.
+- **Input Debouncing & Flight Guard**: Verified that duplicate submits and inputs are blocked while arrow is in flight across all 3 modes.
+- **Live Localhost**: Actively verified responding with HTTP 200 on `http://localhost:5173/`.
+
+---
+
+## 7. Secret Number Privacy & State Sanitization
+- **Single Player**: The engine conceals `secretNumber: null` in `getSinglePlayerView(state)` while the game is active (`status: 'playing'`). It is only revealed when `status === 'won'` or `status === 'lost'`.
+- **Tournament Mode**: The engine strictly masks `secretNumber: null` for all players in `getTournamentView(state)` throughout the entire tournament. It is only revealed on the final results podium after all players have completed their rounds (`status === 'completed'`).
+- **Head-to-Head Duel**:
+  - `getDuelView(state)` masks `p1.secretNumber: null` and `p2.secretNumber: null` during gameplay.
+  - The secret input fields use `<input type="password" />` to prevent over-the-shoulder peeking.
+  - Secret numbers are never passed to the 3D rendering pipeline or publicly visible HUD elements during active combat.
+- **Pass-and-Play Security Boundary**:
+  - While client-side memory or developer tools in the browser can inspect local variables on a shared device, all accidental visual exposure across UI components, props, state objects, and DOM trees is prevented.

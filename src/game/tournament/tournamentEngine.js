@@ -248,7 +248,7 @@ export function getTournamentView(state) {
       attemptsUsed: p.attemptsUsed,
       solved: p.solved,
       status: p.status,
-      secretNumber: (isFinished || p.status === 'completed') ? p.secretNumber : null
+      secretNumber: isFinished ? p.secretNumber : null
     })),
     winners: isFinished ? state.winners.map(w => ({ id: w.id, name: w.name, color: w.color, attemptsUsed: w.attemptsUsed })) : []
   };
