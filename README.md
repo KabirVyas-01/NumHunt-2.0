@@ -73,8 +73,7 @@ NumHunt 2.0/
 │   ├── services/        # SoundService (procedural Web Audio API engine)
 │   └── tests/           # Vitest unit and integration test suites (52 tests)
 ├── testsprite_tests/    # TestSprite automated E2E test plan & reports
-├── netlify.toml         # Netlify SPA routing & security headers configuration
-└── vercel.json          # Vercel SPA routing & security configuration
+└── netlify.toml         # Netlify SPA routing & security headers configuration
 ```
 
 ---

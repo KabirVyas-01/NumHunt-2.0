@@ -26,7 +26,7 @@
 - **Design System Source**: Google Stitch (`NumHunt Archery Gaming Interface` / `Tactical Precision Optics HUD`)
 - **Testing Engine**: Vitest (100% test pass rate across 8 test suites and 51 integration/unit tests)
 - **Audio Synthesizer**: Zero-dependency procedural Web Audio API engine (`soundService.js`) generating realistic bow-draw tension, whooshes, bullseye wood strikes, and ground impacts. Persisted in `localStorage`.
-- **Deployment Ready**: Production configuration and headers prepared for Netlify (`netlify.toml`) and Vercel (`vercel.json`).
+- **Deployment**: Production deployment configured and active on Netlify (`netlify.toml` at https://numhunt-2.netlify.app).
 
 ---
 
