@@ -1,12 +1,12 @@
 # 🏹 NUMHUNT 2.0 — MASTER CONTEXT & ARCHITECTURAL SPECIFICATION
 
-> **Last Updated**: November 24, 2026 (Post-Stage-5 Testing, Optimization, Audio Integration & Final Polish)  
-> **Status**: Stages 0, 1, 2, 3, 4, and 5 are **100% COMPLETE, INTEGRATED, AUDITED & VERIFIED**. Ready for production deployment.
+> **Last Updated**: November 25, 2026 (Live Production Deployment Verified)  
+> **Status**: Stages 0–5 complete. Live in production on Netlify at https://numhunt-2.netlify.app.
 
 ---
 
 ## 1. Project Overview & Vision
-**NumHunt 2.0** is an evolution of the classic browser number-guessing game **NumHunt** (original: https://kabirvyas-numhunt-game.netlify.app), reimagined as an atmospheric, cinematic, 3D archery-themed experience.
+**NumHunt 2.0** is an evolution of the classic browser number-guessing game **NumHunt** (original: https://kabirvyas-numhunt-game.netlify.app; v2.0: https://numhunt-2.netlify.app), reimagined as an atmospheric, cinematic, 3D archery-themed experience.
 
 - **Isolation**: The original `NunHunt` directory remains untouched. NumHunt 2.0 lives exclusively in its own dedicated workspace.
 - **Physical Arrow Feedback & Miss Mechanics**:

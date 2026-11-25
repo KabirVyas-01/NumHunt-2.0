@@ -1,59 +1,94 @@
-# NumHunt 2.0
+# 🏹 NumHunt 2.0 — Tactical Archery Number Guessing Game
 
-NumHunt 2.0 is a cinematic, 3D archery-themed reimagining of the classic number-guessing game NumHunt.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-NumHunt%202.0-f0bf5c?style=for-the-badge&logo=netlify&logoColor=black)](https://numhunt-2.netlify.app)
 
-The game is built with a strictly decoupled architecture: pure authoritative game logic, modular UI screens (React), and a standalone 3D rendering pipeline (Three.js).
+> **Live Game URL**: [https://numhunt-2.netlify.app](https://numhunt-2.netlify.app)  
+> **Original Game (v1.0)**: [https://kabirvyas-numhunt-game.netlify.app](https://kabirvyas-numhunt-game.netlify.app)
+
+**NumHunt 2.0** is an atmospheric, cinematic, 3D archery-themed reimagining of the classic browser number-guessing game **NumHunt**. 
+
+Built with a strictly decoupled architecture: pure authoritative game logic engines, modular UI screens (React 19 + Tailwind CSS v4), and an interactive 3D rendering and ballistics pipeline (Three.js).
+
+---
+
+## 🎯 Live Deployment & Play
+Experience NumHunt 2.0 directly in your browser:
+- 🌐 **Production URL**: [https://numhunt-2.netlify.app](https://numhunt-2.netlify.app)
+
+---
+
+## 🏹 Ballistics & Miss Mechanics
+- **Bullseye Hit (Correct Guess)**: Exact secret number strikes the center gold bullseye with wood splinter particle effects and target vibration.
+- **Lower Guess (Miss)**: Arrow falls short and strikes the ground in front of the target, kicking up dust particles.
+- **Higher Guess (Miss)**: Arrow sails completely over the top of the archery target boss into the distant background.
+- **Suspense Tracking**: An animated `ARROW IN FLIGHT... TRACKING TRAJECTORY` banner engages during flight; directional feedback (*"You guessed it higher"*, *"You guessed it lower"*) and attempt counters are revealed strictly upon arrow impact.
+
+---
+
+## 🎮 Game Modes (Original Rules Preserved)
+
+1. **Single Player (Solo Training)**:
+   - **Level 1**: Range 1–100, 10 attempts.
+   - **Level 2**: Range 1–1000, 15 attempts, single-use Extreme Hint (> 500 difference).
+2. **Multiplayer Tournament (Pass-and-Play)**:
+   - 2–4 players on a single device, Range 1–100, 10 attempts per player.
+   - Sequential full rounds with private handover transition shields protecting secrets.
+   - Lowest guess count wins; joint winners supported.
+   - Combat colors: Red (P1), Green (P2), Blue (P3), Yellow (P4).
+3. **Head-to-Head Duel (1v1 PVP)**:
+   - 2 players, Range 1–100.
+   - Secret number entry for opponent via masked inputs; alternating turns; first correct guess wins immediately.
+   - Both secrets revealed upon match victory.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [React](https://react.dev/) + [Vite](https://vite.dev/)
-- **Language**: JavaScript (ES Modules)
-- **3D Graphics Engine**: [Three.js](https://threejs.org/)
-- **Test Runner**: [Vitest](https://vitest.dev/)
-- **UI Architecture**: Component & Screen-driven modular design
+- **Framework**: [React 19](https://react.dev/) + [Vite 8](https://vite.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) + Space Grotesk + JetBrains Mono
+- **3D Graphics Engine**: [Three.js](https://threejs.org/) (r187)
+- **Audio Engine**: Zero-dependency procedural [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) synthesizer (bow draw, whoosh, bullseye strike, ground impact, victory fanfare)
+- **Testing Engine**: [Vitest](https://vitest.dev/) (52 unit & integration tests) + TestSprite E2E suite
+- **Deployment**: [Netlify](https://www.netlify.com/)
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-src/
-├── components/          # Reusable UI widgets (buttons, modals, HUD badges, badges)
-├── screens/             # Top-level screen views (HomeScreen, ModeSelect, GameScreens)
-├── game/                # Authoritative game logic & rules (NO Three.js or DOM code)
-│   ├── logic/           # Core mathematical guessing engine & common validations
-│   ├── singlePlayer/    # Single Player mode state machine (Level 1 & Level 2 with Extreme Hint)
-│   ├── tournament/      # Tournament mode (2-4 player pass-and-play sequential rounds)
-│   └── duel/            # Head-to-Head Duel mode (1v1 alternating turns with secret setting)
-├── three/               # Three.js 3D canvas pipeline
-│   ├── scene/           # Scene, camera, lighting, and environment management
-│   ├── characters/      # Archer model loading, materials, and color tinting
-│   ├── animations/      # Archery draw, shoot, and trajectory physics interpolators
-│   └── assets/          # 3D model loaders and asset registry
-├── services/            # Pluggable services (Audio, Storage, and future Networking)
-├── hooks/               # Custom React hooks (game state listeners, viewport sizing)
-├── styles/              # Global styles, variables, and typography
-├── utils/               # Math, formatting, and helper utilities
-└── tests/               # Vitest unit and integration test suites
+NumHunt 2.0/
+├── dist/                # Production build artifacts
+├── src/
+│   ├── components/      # UI widgets (Header, Modals, HandoverScreen, ArcheryArena)
+│   ├── screens/         # Top-level screen views (MainMenu, SinglePlayer, Tournament, Duel)
+│   ├── gameLogic/       # Authoritative headless game rules & state machines
+│   │   ├── common.js            # Input validation & secret generator
+│   │   ├── singlePlayerEngine.js # Level 1 & 2 state machine & extreme hint
+│   │   ├── tournamentEngine.js   # 2-4 player rounds & leaderboard logic
+│   │   └── duelEngine.js         # 1v1 turn alternation & victory checks
+│   ├── three/           # Three.js 3D canvas pipeline
+│   │   ├── scene/       # Scene, camera, lighting, and environment setup
+│   │   ├── models/      # Target boss, quiver, environment geometry
+│   │   └── animations/  # ArcheryShotAnimator, ballistic trajectories, particles
+│   ├── services/        # SoundService (procedural Web Audio API engine)
+│   └── tests/           # Vitest unit and integration test suites (52 tests)
+├── testsprite_tests/    # TestSprite automated E2E test plan & reports
+├── netlify.toml         # Netlify SPA routing & security headers configuration
+└── vercel.json          # Vercel SPA routing & security configuration
 ```
-
-> **Architecture Note**: The `game/` engine has zero coupling to the DOM or Three.js. This ensures local pass-and-play and potential future online multiplayer can swap transport layers through `services/` without altering core rules.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started Locally
 
 ### 1. Prerequisites
-- [Node.js](https://nodejs.org/) (v18+ recommended, verified on v24)
+- [Node.js](https://nodejs.org/) (v18+ recommended)
 - `npm` (v9+)
 
 ### 2. Installation
-Navigate into the `numhunt2.0` directory and install dependencies:
-
 ```bash
-cd numhunt2.0
+git clone https://github.com/KabirVyas-01/NumHunt-2.0.git
+cd NumHunt-2.0
 npm install
 ```
 
@@ -61,24 +96,12 @@ npm install
 
 | Command | Purpose |
 | :--- | :--- |
-| `npm run dev` | Starts Vite local development server with Hot Module Replacement (HMR) |
-| `npm test` | Runs the Vitest test suite once |
-| `npm run test:watch` | Starts Vitest in interactive watch mode |
-| `npm run build` | Builds the production-optimized static bundle to `dist/` |
-| `npm run preview` | Locally previews the production build |
+| `npm run dev` | Starts Vite local development server on `http://localhost:5173/` |
+| `npm test` | Runs all 52 Vitest unit & integration tests |
+| `npm run build` | Builds the production bundle to `dist/` |
+| `npm run preview` | Previews the production build locally |
 
 ---
 
-## 🎯 Game Modes Overview (Original Rules Preserved)
-
-1. **Single Player**:
-   - **Level 1**: Range 1–100, 10 attempts.
-   - **Level 2**: Range 1–1000, 15 attempts, single-use Extreme Hint (> 500 difference).
-2. **Multiplayer Tournament**:
-   - 2–4 players, Range 1–100, 10 attempts per round.
-   - Sequential full rounds; lowest guess count wins.
-   - Colors: Red (P1), Green (P2), Blue (P3), Yellow (P4).
-3. **Head-to-Head Duel**:
-   - 1v1 PVP, Range 1–100.
-   - Secret number entry for opponent; alternating turns; first correct guess wins.
-   - Colors: Red (P1) vs. Blue (P2).
+## 📄 License
+MIT License. Created by Kabir Vyas.
